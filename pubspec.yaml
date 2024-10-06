@@ -1,4 +1,4 @@
-name: flutter_starter_template
+name: ink_relay
 description: A Very Good Project created by Very Good CLI.
 version: 1.0.0+1
 publish_to: none
@@ -12,11 +12,11 @@ dependencies:
     path: ./packages/analytics_core
   auth_core:
     path: ./packages/auth_core
+  collection: ^1.18.0
+  copy_with_extension: ^5.0.4
   data_privacy:
     path: ./packages/data_privacy
   device_info_plus: ^10.1.0
-  collection: ^1.18.0
-  copy_with_extension: ^5.0.4
   dynamic_color: ^1.7.0
   error_logging_core:
     path: ./packages/error_logging_core
@@ -55,11 +55,11 @@ dev_dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
-  freezed: ^2.5.2
   json_serializable: ^6.8.0
   mocktail: ^1.0.4
   riverpod_generator: ^2.4.3
   riverpod_lint: ^2.3.13
+  test: ^1.25.3
   very_good_analysis: ^6.0.0
 
 flutter:

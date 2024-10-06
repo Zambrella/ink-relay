@@ -2,15 +2,15 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_starter_template/app_dependencies.dart';
-import 'package:flutter_starter_template/authentication/providers/authentication_providers.dart';
-import 'package:flutter_starter_template/authentication/providers/login_provider.dart';
-import 'package:flutter_starter_template/l10n/gen_l10n/app_localizations.dart';
-import 'package:flutter_starter_template/routing/app_router.dart';
-import 'package:flutter_starter_template/theme/app_theme.dart';
-import 'package:flutter_starter_template/theme/form_factor.dart';
-import 'package:flutter_starter_template/theme/selected_theme.dart';
-import 'package:flutter_starter_template/theme/text_scale_factor_clamper.dart';
+import 'package:ink_relay/app_dependencies.dart';
+import 'package:ink_relay/authentication/providers/authentication_providers.dart';
+import 'package:ink_relay/authentication/providers/login_provider.dart';
+import 'package:ink_relay/l10n/gen_l10n/app_localizations.dart';
+import 'package:ink_relay/routing/app_router.dart';
+import 'package:ink_relay/theme/app_theme.dart';
+import 'package:ink_relay/theme/form_factor.dart';
+import 'package:ink_relay/theme/selected_theme.dart';
+import 'package:ink_relay/theme/text_scale_factor_clamper.dart';
 import 'package:toastification/toastification.dart';
 
 class App extends ConsumerStatefulWidget {
@@ -73,10 +73,14 @@ class _AppState extends ConsumerState<App> {
       builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
         return MaterialApp.router(
           routerConfig: goRouter,
-          theme: AppTheme.lightThemeData.copyWith(colorScheme: lightDynamic?.harmonized()),
-          highContrastTheme: AppTheme.hcLightThemeData.copyWith(colorScheme: lightDynamic?.harmonized()),
-          darkTheme: AppTheme.darkThemeData.copyWith(colorScheme: darkDynamic?.harmonized()),
-          highContrastDarkTheme: AppTheme.hcDarkThemeData.copyWith(colorScheme: darkDynamic?.harmonized()),
+          theme: AppTheme.lightThemeData
+              .copyWith(colorScheme: lightDynamic?.harmonized()),
+          highContrastTheme: AppTheme.hcLightThemeData
+              .copyWith(colorScheme: lightDynamic?.harmonized()),
+          darkTheme: AppTheme.darkThemeData
+              .copyWith(colorScheme: darkDynamic?.harmonized()),
+          highContrastDarkTheme: AppTheme.hcDarkThemeData
+              .copyWith(colorScheme: darkDynamic?.harmonized()),
           themeMode: ref.watch(selectedThemeProvider).maybeWhen(
                 orElse: () => ThemeMode.system,
                 data: (themeMode) => themeMode,

@@ -1,8 +1,8 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flex_seed_scheme/flex_seed_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_template/theme/page_transitions.dart';
-import 'package:flutter_starter_template/theme/theme_extensions.dart';
+import 'package:ink_relay/theme/page_transitions.dart';
+import 'package:ink_relay/theme/theme_extensions.dart';
 
 class ColorTokens {
   ColorTokens._();

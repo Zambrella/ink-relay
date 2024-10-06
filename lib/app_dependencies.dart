@@ -8,9 +8,9 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:error_logging_core/error_logging_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_starter_template/authentication/providers/authentication_providers.dart';
-import 'package:flutter_starter_template/flavors.dart';
-import 'package:flutter_starter_template/repository_providers.dart';
+import 'package:ink_relay/authentication/providers/authentication_providers.dart';
+import 'package:ink_relay/flavors.dart';
+import 'package:ink_relay/repository_providers.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -93,14 +93,21 @@ FutureOr<void> serviceInitialisation(ServiceInitialisationRef ref) async {
   await ref.read(purchasesRepositoryProvider).init(isDebugMode: kDebugMode);
 
   // Fetch the opt-in settings and enable/disable services accordingly
-  final optInSettings = await ref.read(dataPrivacyRepositoryProvider).fetchPrivacySettings();
+  final optInSettings =
+      await ref.read(dataPrivacyRepositoryProvider).fetchPrivacySettings();
   if (optInSettings != null) {
     if (optInSettings.basic) {
       await ref.read(analyticsRepositoryProvider).enableAnalytics(enable: true);
-      await ref.read(errorLoggingRepositoryProvider).enableLogging(enable: true);
+      await ref
+          .read(errorLoggingRepositoryProvider)
+          .enableLogging(enable: true);
     } else {
-      await ref.read(analyticsRepositoryProvider).enableAnalytics(enable: false);
-      await ref.read(errorLoggingRepositoryProvider).enableLogging(enable: false);
+      await ref
+          .read(analyticsRepositoryProvider)
+          .enableAnalytics(enable: false);
+      await ref
+          .read(errorLoggingRepositoryProvider)
+          .enableLogging(enable: false);
     }
   }
 

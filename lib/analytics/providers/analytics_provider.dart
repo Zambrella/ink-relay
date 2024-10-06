@@ -1,5 +1,5 @@
-import 'package:flutter_starter_template/analytics/domain/analytics_facade.dart';
-import 'package:flutter_starter_template/repository_providers.dart';
+import 'package:ink_relay/analytics/domain/analytics_facade.dart';
+import 'package:ink_relay/repository_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'analytics_provider.g.dart';

@@ -1,5 +1,5 @@
-import 'package:flutter_starter_template/app_dependencies.dart';
-import 'package:flutter_starter_template/repository_providers.dart';
+import 'package:ink_relay/app_dependencies.dart';
+import 'package:ink_relay/repository_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'login_provider.g.dart';

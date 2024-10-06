@@ -1,5 +1,5 @@
 import 'package:auth_core/auth_core.dart';
-import 'package:flutter_starter_template/repository_providers.dart';
+import 'package:ink_relay/repository_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'authentication_providers.g.dart';

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_template/bootstrap.dart';
-import 'package:flutter_starter_template/flavors.dart';
+import 'package:ink_relay/bootstrap.dart';
+import 'package:ink_relay/flavors.dart';
 
 Future<void> main() async {
   await runZonedGuarded(
