@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                context.goNamed(AppRoute.home.name);
+                context.goNamed(AppRoute.calendar.name);
               },
               child: const Text('Login'),
             ),

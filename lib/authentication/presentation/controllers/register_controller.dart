@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:analytics_core/analytics_core.dart';
+import 'package:ink_relay/app_dependencies.dart';
 import 'package:ink_relay/repository_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -19,7 +20,7 @@ class RegisterController extends _$RegisterController {
       await Future<void>.delayed(const Duration(seconds: 2));
       final _ = await ref.read(authRepositoryProvider).signUp(
             email: '1234@test.com',
-            password: '123456',
+            password: 'mag1c1an123',
           );
       // At this point, the app will have navigated to the login page.
       await ref.read(analyticsRepositoryProvider).logCustomEvent(
@@ -27,6 +28,7 @@ class RegisterController extends _$RegisterController {
           );
       state = const AsyncData(null);
     } catch (e, st) {
+      ref.read(loggerProvider).e(e, stackTrace: st);
       state = AsyncError(e, st);
     }
   }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ink_relay/app_exception.dart';
 import 'package:ink_relay/authentication/presentation/controllers/register_controller.dart';
 import 'package:ink_relay/common/extensions/toastification_extensions.dart';
 import 'package:ink_relay/routing/app_router.dart';
-import 'package:go_router/go_router.dart';
 import 'package:toastification/toastification.dart';
 
 class RegisterPage extends ConsumerWidget {
@@ -15,7 +15,7 @@ class RegisterPage extends ConsumerWidget {
     ref.listen(registerControllerProvider, (prev, next) {
       if (next is AsyncData) {
         // print('User registered');
-        context.goNamed(AppRoute.home.name);
+        context.goNamed(AppRoute.calendar.name);
       }
 
       if (next is AsyncLoading) {
@@ -24,7 +24,9 @@ class RegisterPage extends ConsumerWidget {
 
       if (next is AsyncError) {
         toastification.showError(
-            context: context, message: next.error.errorMessage(context));
+          context: context,
+          message: next.error.errorMessage(context),
+        );
       }
     });
 

@@ -12,7 +12,7 @@ enum FormFactor {
   laptop(1024),
 
   /// Biggest sized devices such as desktops
-  desktop(double.infinity);
+  desktop(1440);
 
   const FormFactor(this.breakpoint);
 
@@ -33,7 +33,9 @@ class FormFactorWidget extends InheritedWidget {
   final FormFactor formFactor;
 
   static FormFactor? maybeOf(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<FormFactorWidget>()?.formFactor;
+    return context
+        .dependOnInheritedWidgetOfExactType<FormFactorWidget>()
+        ?.formFactor;
   }
 
   static FormFactor of(BuildContext context) {
@@ -43,5 +45,6 @@ class FormFactorWidget extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(FormFactorWidget oldWidget) => formFactor != oldWidget.formFactor;
+  bool updateShouldNotify(FormFactorWidget oldWidget) =>
+      formFactor != oldWidget.formFactor;
 }

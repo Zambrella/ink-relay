@@ -3,8 +3,13 @@ import 'package:go_router/go_router.dart';
 import 'package:ink_relay/authentication/presentation/pages/login_page.dart';
 import 'package:ink_relay/authentication/presentation/pages/register_page.dart';
 import 'package:ink_relay/authentication/providers/authentication_providers.dart';
-import 'package:ink_relay/home/presentation/home_page.dart';
+import 'package:ink_relay/calendar/presentation/pages/calendar_page.dart';
+import 'package:ink_relay/clients/presentation/pages/clients_page.dart';
+import 'package:ink_relay/messages/presentation/pages/messages_page.dart';
+import 'package:ink_relay/projects/presentation/pages/project_details_page.dart';
+import 'package:ink_relay/projects/presentation/pages/projects_page.dart';
 import 'package:ink_relay/routing/not_found_screen.dart';
+import 'package:ink_relay/routing/scaffold_with_nested_navigation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_router.g.dart';
@@ -12,18 +17,29 @@ part 'app_router.g.dart';
 // private navigators
 final _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'rootNavigator');
+final _calendarNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'calendarNavigator');
+final _messagesNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'messagesNavigator');
+final _projectsNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'projectsNavigator');
+final _clientsNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'clientsNavigator');
 
 enum AppRoute {
   login,
   register,
-  home,
-  details,
+  calendar,
+  messages,
+  projects,
+  projectDetails,
+  clients,
 }
 
 @Riverpod(keepAlive: true)
 GoRouter goRouter(GoRouterRef ref) {
   return GoRouter(
-    initialLocation: '/home',
+    initialLocation: '/calendar',
     navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
     redirect: (context, state) {
@@ -70,25 +86,67 @@ GoRouter goRouter(GoRouterRef ref) {
           child: RegisterPage(),
         ),
       ),
-      GoRoute(
-        path: '/home',
-        name: AppRoute.home.name,
-        pageBuilder: (context, state) => const NoTransitionPage(
-          child: HomePage(),
-        ),
-        routes: [
-          GoRoute(
-            path: 'details',
-            name: AppRoute.details.name,
-            pageBuilder: (context, state) {
-              return const NoTransitionPage(
-                child: Scaffold(
-                  body: Center(
-                    child: Text('Details Page'),
-                  ),
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return ScaffoldWithNestedNavigation(
+            navigationShell: navigationShell,
+          );
+        },
+        branches: [
+          StatefulShellBranch(
+            navigatorKey: _calendarNavigatorKey,
+            routes: [
+              GoRoute(
+                path: '/calendar',
+                pageBuilder: (context, state) => const MaterialPage(
+                  child: CalendarPage(),
                 ),
-              );
-            },
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: _messagesNavigatorKey,
+            routes: [
+              GoRoute(
+                path: '/messages',
+                pageBuilder: (context, state) => const MaterialPage(
+                  child: MessagesPage(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: _projectsNavigatorKey,
+            routes: [
+              GoRoute(
+                path: '/projects',
+                pageBuilder: (context, state) => const MaterialPage(
+                  child: ProjectsPage(),
+                ),
+                routes: [
+                  GoRoute(
+                    path: ':projectId',
+                    pageBuilder: (context, state) {
+                      final projectId = state.pathParameters['projectId'];
+                      return MaterialPage(
+                        child: ProjectDetailsPage(projectId: projectId!),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: _clientsNavigatorKey,
+            routes: [
+              GoRoute(
+                path: '/clients',
+                pageBuilder: (context, state) => const MaterialPage(
+                  child: ClientsPage(),
+                ),
+              ),
+            ],
           ),
         ],
       ),
