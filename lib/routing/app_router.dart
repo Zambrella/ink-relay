@@ -10,6 +10,7 @@ import 'package:ink_relay/projects/presentation/pages/project_details_page.dart'
 import 'package:ink_relay/projects/presentation/pages/projects_page.dart';
 import 'package:ink_relay/routing/not_found_screen.dart';
 import 'package:ink_relay/routing/scaffold_with_nested_navigation.dart';
+import 'package:ink_relay/theme/theme.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_router.g.dart';
@@ -17,6 +18,8 @@ part 'app_router.g.dart';
 // private navigators
 final _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'rootNavigator');
+final _shellNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'shellNavigator');
 final _calendarNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'calendarNavigator');
 final _messagesNavigatorKey =
@@ -86,65 +89,91 @@ GoRouter goRouter(GoRouterRef ref) {
           child: RegisterPage(),
         ),
       ),
-      StatefulShellRoute.indexedStack(
-        builder: (context, state, navigationShell) {
-          return ScaffoldWithNestedNavigation(
-            navigationShell: navigationShell,
+      ShellRoute(
+        navigatorKey: _shellNavigatorKey,
+        builder: (context, state, child) {
+          return Column(
+            children: [
+              Material(
+                child: Container(
+                  height: 48,
+                  width: double.infinity,
+                  child: Center(
+                    child: Text('Ink Relay'),
+                  ),
+                ),
+              ),
+              Divider(
+                height: 1,
+                thickness: 1,
+                color: context.theme.colorScheme.secondaryContainer,
+              ),
+              Expanded(child: child),
+            ],
           );
         },
-        branches: [
-          StatefulShellBranch(
-            navigatorKey: _calendarNavigatorKey,
-            routes: [
-              GoRoute(
-                path: '/calendar',
-                pageBuilder: (context, state) => const MaterialPage(
-                  child: CalendarPage(),
-                ),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            navigatorKey: _messagesNavigatorKey,
-            routes: [
-              GoRoute(
-                path: '/messages',
-                pageBuilder: (context, state) => const MaterialPage(
-                  child: MessagesPage(),
-                ),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            navigatorKey: _projectsNavigatorKey,
-            routes: [
-              GoRoute(
-                path: '/projects',
-                pageBuilder: (context, state) => const MaterialPage(
-                  child: ProjectsPage(),
-                ),
+        routes: [
+          StatefulShellRoute.indexedStack(
+            builder: (context, state, navigationShell) {
+              return ScaffoldWithNestedNavigation(
+                navigationShell: navigationShell,
+              );
+            },
+            branches: [
+              StatefulShellBranch(
+                navigatorKey: _calendarNavigatorKey,
                 routes: [
                   GoRoute(
-                    path: ':projectId',
-                    pageBuilder: (context, state) {
-                      final projectId = state.pathParameters['projectId'];
-                      return MaterialPage(
-                        child: ProjectDetailsPage(projectId: projectId!),
-                      );
-                    },
+                    path: '/calendar',
+                    pageBuilder: (context, state) => const MaterialPage(
+                      child: CalendarPage(),
+                    ),
                   ),
                 ],
               ),
-            ],
-          ),
-          StatefulShellBranch(
-            navigatorKey: _clientsNavigatorKey,
-            routes: [
-              GoRoute(
-                path: '/clients',
-                pageBuilder: (context, state) => const MaterialPage(
-                  child: ClientsPage(),
-                ),
+              StatefulShellBranch(
+                navigatorKey: _messagesNavigatorKey,
+                routes: [
+                  GoRoute(
+                    path: '/messages',
+                    pageBuilder: (context, state) => const MaterialPage(
+                      child: MessagesPage(),
+                    ),
+                  ),
+                ],
+              ),
+              StatefulShellBranch(
+                navigatorKey: _projectsNavigatorKey,
+                routes: [
+                  GoRoute(
+                    path: '/projects',
+                    pageBuilder: (context, state) => const MaterialPage(
+                      child: ProjectsPage(),
+                    ),
+                    routes: [
+                      GoRoute(
+                        path: ':projectId',
+                        pageBuilder: (context, state) {
+                          final projectId = state.pathParameters['projectId'];
+                          return MaterialPage(
+                            child: ProjectDetailsPage(projectId: projectId!),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              StatefulShellBranch(
+                navigatorKey: _clientsNavigatorKey,
+                routes: [
+                  GoRoute(
+                    path: '/clients',
+                    pageBuilder: (context, state) => const MaterialPage(
+                      child: ClientsPage(),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ink_relay/theme/form_factor.dart';
+import 'package:ink_relay/theme/theme.dart';
 
 class ScaffoldWithNavigationRail extends StatelessWidget {
   const ScaffoldWithNavigationRail({
@@ -46,7 +47,11 @@ class ScaffoldWithNavigationRail extends StatelessWidget {
               ),
             ],
           ),
-          const VerticalDivider(thickness: 1, width: 1),
+          VerticalDivider(
+            thickness: 1,
+            width: 1,
+            color: context.theme.colorScheme.secondaryContainer,
+          ),
           // Main content on the right (end)
           Expanded(
             child: body,
