@@ -22,10 +22,66 @@ class App extends ConsumerStatefulWidget {
 
 class _AppState extends ConsumerState<App> {
   @override
-  void initState() {
-    super.initState();
-  }
+  Widget build(BuildContext context) {
+    ref.listen<AsyncValue<void>>(
+      serviceInitialisationProvider,
+      (_, state) {
+        if (state.hasValue || state.hasError) {
+          FlutterNativeSplash.remove();
+        }
+      },
+    );
 
+    final initDependencies = ref.watch(serviceInitialisationProvider);
+    final goRouter = ref.watch(goRouterProvider);
+    return DynamicColorBuilder(
+      builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
+        return MaterialApp.router(
+          routerConfig: goRouter,
+          theme: AppTheme.lightThemeData.copyWith(),
+          // highContrastTheme: AppTheme.hcLightThemeData.copyWith(colorScheme: lightDynamic?.harmonized()),
+          darkTheme: AppTheme.darkThemeData.copyWith(),
+          // highContrastDarkTheme: AppTheme.hcDarkThemeData.copyWith(colorScheme: darkDynamic?.harmonized()),
+          themeMode: ref.watch(selectedThemeProvider).maybeWhen(
+                orElse: () => ThemeMode.system,
+                data: (themeMode) => themeMode,
+              ),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          builder: (context, child) {
+            // Wrap with InheritedWidgets here if needed. E.g. One that overrides the text scale factor
+            return initDependencies.when(
+              skipLoadingOnRefresh: false,
+              data: (_) => InitComplete(child: child!),
+              // Loading screen is handled by the native splash screen on the first load.
+              // If there's an error and the user refreshes, the loading screen will be shown.
+              loading: () => const Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+              error: (_, __) {
+                // Logging the error is handled by the provider observer.
+                return const AppStartupErrorWidget();
+              },
+            );
+          },
+        );
+      },
+    );
+  }
+}
+
+class InitComplete extends ConsumerStatefulWidget {
+  const InitComplete({required this.child, super.key});
+
+  final Widget child;
+
+  @override
+  ConsumerState<InitComplete> createState() => _InitCompleteState();
+}
+
+class _InitCompleteState extends ConsumerState<InitComplete> {
   late FormFactor formFactor;
 
   @override
@@ -51,72 +107,23 @@ class _AppState extends ConsumerState<App> {
 
   @override
   Widget build(BuildContext context) {
-    ref
-      ..listen<AsyncValue<void>>(
-        serviceInitialisationProvider,
-        (_, state) {
-          if (state.hasValue || state.hasError) {
-            FlutterNativeSplash.remove();
-          }
-        },
-      )
-      ..listen(authStateChangesProvider, (prev, state) async {
-        if (state.hasValue && state.asData?.value != null) {
-          final userId = state.asData!.value!.id;
-          await ref.read(loginProvider(userId).future);
-        }
-      });
+    ref.listen(authStateChangesProvider, (prev, state) async {
+      if (state.hasValue && state.asData?.value != null) {
+        final userId = state.asData!.value!.id;
+        await ref.read(loginProvider(userId).future);
+      }
+    });
 
-    final initDependencies = ref.watch(serviceInitialisationProvider);
-    final goRouter = ref.watch(goRouterProvider);
-    return DynamicColorBuilder(
-      builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
-        return MaterialApp.router(
-          routerConfig: goRouter,
-          theme: AppTheme.lightThemeData
-              .copyWith(colorScheme: lightDynamic?.harmonized()),
-          highContrastTheme: AppTheme.hcLightThemeData
-              .copyWith(colorScheme: lightDynamic?.harmonized()),
-          darkTheme: AppTheme.darkThemeData
-              .copyWith(colorScheme: darkDynamic?.harmonized()),
-          highContrastDarkTheme: AppTheme.hcDarkThemeData
-              .copyWith(colorScheme: darkDynamic?.harmonized()),
-          themeMode: ref.watch(selectedThemeProvider).maybeWhen(
-                orElse: () => ThemeMode.system,
-                data: (themeMode) => themeMode,
-              ),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          builder: (context, child) {
-            // Wrap with InheritedWidgets here if needed. E.g. One that overrides the text scale factor
-            return initDependencies.when(
-              skipLoadingOnRefresh: false,
-              data: (_) => TextScaleFactorClamper(
-                child: ToastificationConfigProvider(
-                  config: const ToastificationConfig(
-                    alignment: Alignment.topCenter,
-                  ),
-                  child: FormFactorWidget(
-                    formFactor: formFactor,
-                    child: child!,
-                  ),
-                ),
-              ),
-              // Loading screen is handled by the native splash screen on the first load.
-              // If there's an error and the user refreshes, the loading screen will be shown.
-              loading: () => const Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-              error: (_, __) {
-                // Logging the error is handled by the provider observer.
-                return const AppStartupErrorWidget();
-              },
-            );
-          },
-        );
-      },
+    return TextScaleFactorClamper(
+      child: ToastificationConfigProvider(
+        config: const ToastificationConfig(
+          alignment: Alignment.topCenter,
+        ),
+        child: FormFactorWidget(
+          formFactor: formFactor,
+          child: widget.child,
+        ),
+      ),
     );
   }
 }

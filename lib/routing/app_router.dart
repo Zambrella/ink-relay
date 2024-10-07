@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ink_relay/authentication/presentation/pages/login_page.dart';
 import 'package:ink_relay/authentication/presentation/pages/register_page.dart';
 import 'package:ink_relay/authentication/providers/authentication_providers.dart';
 import 'package:ink_relay/home/presentation/home_page.dart';
-import 'package:ink_relay/routing/go_router_refresh_stream.dart';
 import 'package:ink_relay/routing/not_found_screen.dart';
-import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_router.g.dart';
@@ -27,9 +26,6 @@ GoRouter goRouter(GoRouterRef ref) {
     initialLocation: '/home',
     navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
-    // ignore: deprecated_member_use
-    refreshListenable:
-        GoRouterRefreshStream(ref.watch(authStateChangesProvider.stream)),
     redirect: (context, state) {
       final path = state.uri.path;
       final isLoggedIn = ref.read(currentUserProvider) != null;

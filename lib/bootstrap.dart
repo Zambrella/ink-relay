@@ -7,13 +7,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+// ignore:depend_on_referenced_packages
+import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:ink_relay/app.dart';
 import 'package:ink_relay/app_dependencies.dart';
 import 'package:ink_relay/flavors.dart';
 import 'package:ink_relay/logging/app_logging/logger_config.dart';
 import 'package:ink_relay/logging/app_logging/provider_logger.dart';
-// ignore:depend_on_referenced_packages
-import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

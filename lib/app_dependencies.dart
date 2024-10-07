@@ -4,6 +4,7 @@
 
 import 'dart:async';
 
+import 'package:appwrite/appwrite.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:error_logging_core/error_logging_core.dart';
 import 'package:flutter/foundation.dart';
@@ -28,6 +29,7 @@ class AppDependencies with _$AppDependencies {
     required BaseDeviceInfo deviceInfo,
     required SharedPreferences sharedPreferences,
     required Version appVersion,
+    required Client backendClient,
   }) = _AppDependencies;
 }
 
@@ -65,6 +67,16 @@ Future<AppDependencies> appDependencies(
     }
   }
   // Other examples: database connection, sound pool, vibration service, session storage.
+  final client = Client()
+      .setEndpoint(
+        'https://cloud.appwrite.io/v1',
+      )
+      .setProject(
+        '6702a30e000740536df1',
+      )
+      .setSelfSigned(
+        status: flavor == Flavor.dev,
+      );
 
   logger.i('Dependency initialization successful.');
 
@@ -73,6 +85,7 @@ Future<AppDependencies> appDependencies(
     deviceInfo: deviceInfo,
     sharedPreferences: prefs,
     appVersion: appVersion,
+    backendClient: client,
   );
 }
 

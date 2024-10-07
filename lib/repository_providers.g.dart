@@ -21,11 +21,74 @@ final sharedPreferencesProvider = Provider<SharedPreferences>.internal(
 );
 
 typedef SharedPreferencesRef = ProviderRef<SharedPreferences>;
-String _$authRepositoryHash() => r'0f0aea8947c951d7946110cb9f6ecaa1ea21237b';
+String _$appwriteClientHash() => r'5d01046785670bc12cdf11a0b890166c9aaaed34';
+
+/// See also [appwriteClient].
+@ProviderFor(appwriteClient)
+final appwriteClientProvider = Provider<Client>.internal(
+  appwriteClient,
+  name: r'appwriteClientProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$appwriteClientHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef AppwriteClientRef = ProviderRef<Client>;
+String _$appwriteAccountClientHash() =>
+    r'f5b61a7c8903e1cdbab152c90f0f2001483993db';
+
+/// See also [appwriteAccountClient].
+@ProviderFor(appwriteAccountClient)
+final appwriteAccountClientProvider = Provider<Account>.internal(
+  appwriteAccountClient,
+  name: r'appwriteAccountClientProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$appwriteAccountClientHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef AppwriteAccountClientRef = ProviderRef<Account>;
+String _$appwriteDatabaseClientHash() =>
+    r'46cb2efa7bf54bc97971a353cad4d5c67ced8674';
+
+/// See also [appwriteDatabaseClient].
+@ProviderFor(appwriteDatabaseClient)
+final appwriteDatabaseClientProvider = Provider<Databases>.internal(
+  appwriteDatabaseClient,
+  name: r'appwriteDatabaseClientProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$appwriteDatabaseClientHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef AppwriteDatabaseClientRef = ProviderRef<Databases>;
+String _$appwriteStorageClientHash() =>
+    r'5f2d162d968e51deffd9b82a18a119e62dbeeb8b';
+
+/// See also [appwriteStorageClient].
+@ProviderFor(appwriteStorageClient)
+final appwriteStorageClientProvider = Provider<Storage>.internal(
+  appwriteStorageClient,
+  name: r'appwriteStorageClientProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$appwriteStorageClientHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef AppwriteStorageClientRef = ProviderRef<Storage>;
+String _$authRepositoryHash() => r'c743ea886fb90957b490976013f00807c9a3211f';
 
 /// See also [authRepository].
 @ProviderFor(authRepository)
-final authRepositoryProvider = Provider<AuthRepository>.internal(
+final authRepositoryProvider = Provider<AppwriteAuthRepository>.internal(
   authRepository,
   name: r'authRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -35,7 +98,7 @@ final authRepositoryProvider = Provider<AuthRepository>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef AuthRepositoryRef = ProviderRef<AuthRepository>;
+typedef AuthRepositoryRef = ProviderRef<AppwriteAuthRepository>;
 String _$analyticsRepositoryHash() =>
     r'3412ce99a6bcc65dcf22c596f621d2ab9320e685';
 
@@ -84,5 +147,20 @@ final dataPrivacyRepositoryProvider = Provider<DataPrivacyRepository>.internal(
 );
 
 typedef DataPrivacyRepositoryRef = ProviderRef<DataPrivacyRepository>;
+String _$secureStorageHash() => r'1803ee54eebc4038de1cd19ff9f0850676721a7f';
+
+/// See also [secureStorage].
+@ProviderFor(secureStorage)
+final secureStorageProvider = Provider<FlutterSecureStorage>.internal(
+  secureStorage,
+  name: r'secureStorageProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$secureStorageHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef SecureStorageRef = ProviderRef<FlutterSecureStorage>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

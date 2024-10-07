@@ -33,13 +33,13 @@ class RegisterPage extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
+            FilledButton(
               onPressed: () async {
                 await ref.read(registerControllerProvider.notifier).register();
               },
               child: const Text('Register'),
             ),
-            ElevatedButton(
+            FilledButton(
               onPressed: () {
                 context.goNamed(AppRoute.register.name);
               },
