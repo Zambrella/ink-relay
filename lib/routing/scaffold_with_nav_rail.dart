@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ink_relay/theme/form_factor.dart';
 import 'package:ink_relay/theme/theme.dart';
 
 class ScaffoldWithNavigationRail extends StatelessWidget {

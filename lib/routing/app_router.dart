@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ink_relay/artist/domain/presentation/pages/artist_profile_page.dart';
 import 'package:ink_relay/authentication/presentation/pages/login_page.dart';
 import 'package:ink_relay/authentication/presentation/pages/register_page.dart';
 import 'package:ink_relay/authentication/providers/authentication_providers.dart';
 import 'package:ink_relay/calendar/presentation/pages/calendar_page.dart';
 import 'package:ink_relay/clients/presentation/pages/clients_page.dart';
+import 'package:ink_relay/common/widgets/app_header.dart';
 import 'package:ink_relay/messages/presentation/pages/messages_page.dart';
 import 'package:ink_relay/projects/presentation/pages/project_details_page.dart';
 import 'package:ink_relay/projects/presentation/pages/projects_page.dart';
 import 'package:ink_relay/routing/not_found_screen.dart';
 import 'package:ink_relay/routing/scaffold_with_nested_navigation.dart';
-import 'package:ink_relay/theme/theme.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_router.g.dart';
@@ -37,6 +38,7 @@ enum AppRoute {
   projects,
   projectDetails,
   clients,
+  profile,
 }
 
 @Riverpod(keepAlive: true)
@@ -52,7 +54,7 @@ GoRouter goRouter(GoRouterRef ref) {
       // Redirect to home page if navigating to login pages while logged in
       if (isLoggedIn) {
         if (path.startsWith('/login') || path.startsWith('/register')) {
-          return '/home';
+          return '/calendar';
         }
       }
 
@@ -92,25 +94,7 @@ GoRouter goRouter(GoRouterRef ref) {
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {
-          return Column(
-            children: [
-              Material(
-                child: Container(
-                  height: 48,
-                  width: double.infinity,
-                  child: Center(
-                    child: Text('Ink Relay'),
-                  ),
-                ),
-              ),
-              Divider(
-                height: 1,
-                thickness: 1,
-                color: context.theme.colorScheme.secondaryContainer,
-              ),
-              Expanded(child: child),
-            ],
-          );
+          return AppHeader(child: child);
         },
         routes: [
           StatefulShellRoute.indexedStack(
@@ -125,6 +109,7 @@ GoRouter goRouter(GoRouterRef ref) {
                 routes: [
                   GoRoute(
                     path: '/calendar',
+                    name: AppRoute.calendar.name,
                     pageBuilder: (context, state) => const MaterialPage(
                       child: CalendarPage(),
                     ),
@@ -136,6 +121,7 @@ GoRouter goRouter(GoRouterRef ref) {
                 routes: [
                   GoRoute(
                     path: '/messages',
+                    name: AppRoute.messages.name,
                     pageBuilder: (context, state) => const MaterialPage(
                       child: MessagesPage(),
                     ),
@@ -147,12 +133,14 @@ GoRouter goRouter(GoRouterRef ref) {
                 routes: [
                   GoRoute(
                     path: '/projects',
+                    name: AppRoute.projects.name,
                     pageBuilder: (context, state) => const MaterialPage(
                       child: ProjectsPage(),
                     ),
                     routes: [
                       GoRoute(
                         path: ':projectId',
+                        name: AppRoute.projectDetails.name,
                         pageBuilder: (context, state) {
                           final projectId = state.pathParameters['projectId'];
                           return MaterialPage(
@@ -169,6 +157,7 @@ GoRouter goRouter(GoRouterRef ref) {
                 routes: [
                   GoRoute(
                     path: '/clients',
+                    name: AppRoute.clients.name,
                     pageBuilder: (context, state) => const MaterialPage(
                       child: ClientsPage(),
                     ),
@@ -176,6 +165,13 @@ GoRouter goRouter(GoRouterRef ref) {
                 ],
               ),
             ],
+          ),
+          GoRoute(
+            path: '/artist-profile',
+            name: AppRoute.profile.name,
+            pageBuilder: (context, state) => const MaterialPage(
+              child: ArtistProfilePage(),
+            ),
           ),
         ],
       ),

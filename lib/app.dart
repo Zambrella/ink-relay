@@ -48,6 +48,7 @@ class _AppState extends ConsumerState<App> {
               ),
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
+          debugShowCheckedModeBanner: false,
           builder: (context, child) {
             // Wrap with InheritedWidgets here if needed. E.g. One that overrides the text scale factor
             return initDependencies.when(
