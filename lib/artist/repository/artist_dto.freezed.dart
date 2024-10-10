@@ -20,9 +20,16 @@ ArtistDto _$ArtistDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ArtistDto {
+// ignore: invalid_annotation_target
+  @JsonKey(includeToJson: false)
   String get $id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  DateTime get $createdAt => throw _privateConstructorUsedError;
+  String get name =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(includeToJson: false)
+  DateTime get $createdAt =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(includeToJson: false)
   DateTime get $updatedAt => throw _privateConstructorUsedError;
   String? get profileImage => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
@@ -43,10 +50,11 @@ abstract class $ArtistDtoCopyWith<$Res> {
       _$ArtistDtoCopyWithImpl<$Res, ArtistDto>;
   @useResult
   $Res call(
-      {String $id,
+      {@JsonKey(includeToJson: false) String $id,
       String email,
-      DateTime $createdAt,
-      DateTime $updatedAt,
+      String name,
+      @JsonKey(includeToJson: false) DateTime $createdAt,
+      @JsonKey(includeToJson: false) DateTime $updatedAt,
       String? profileImage,
       String? phoneNumber});
 }
@@ -68,6 +76,7 @@ class _$ArtistDtoCopyWithImpl<$Res, $Val extends ArtistDto>
   $Res call({
     Object? $id = null,
     Object? email = null,
+    Object? name = null,
     Object? $createdAt = null,
     Object? $updatedAt = null,
     Object? profileImage = freezed,
@@ -81,6 +90,10 @@ class _$ArtistDtoCopyWithImpl<$Res, $Val extends ArtistDto>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       $createdAt: null == $createdAt
           ? _value.$createdAt
@@ -111,10 +124,11 @@ abstract class _$$ArtistDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String $id,
+      {@JsonKey(includeToJson: false) String $id,
       String email,
-      DateTime $createdAt,
-      DateTime $updatedAt,
+      String name,
+      @JsonKey(includeToJson: false) DateTime $createdAt,
+      @JsonKey(includeToJson: false) DateTime $updatedAt,
       String? profileImage,
       String? phoneNumber});
 }
@@ -134,6 +148,7 @@ class __$$ArtistDtoImplCopyWithImpl<$Res>
   $Res call({
     Object? $id = null,
     Object? email = null,
+    Object? name = null,
     Object? $createdAt = null,
     Object? $updatedAt = null,
     Object? profileImage = freezed,
@@ -147,6 +162,10 @@ class __$$ArtistDtoImplCopyWithImpl<$Res>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       $createdAt: null == $createdAt
           ? _value.$createdAt
@@ -172,10 +191,11 @@ class __$$ArtistDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ArtistDtoImpl extends _ArtistDto {
   const _$ArtistDtoImpl(
-      {required this.$id,
+      {@JsonKey(includeToJson: false) required this.$id,
       required this.email,
-      required this.$createdAt,
-      required this.$updatedAt,
+      required this.name,
+      @JsonKey(includeToJson: false) required this.$createdAt,
+      @JsonKey(includeToJson: false) required this.$updatedAt,
       this.profileImage,
       this.phoneNumber})
       : super._();
@@ -183,13 +203,21 @@ class _$ArtistDtoImpl extends _ArtistDto {
   factory _$ArtistDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ArtistDtoImplFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
+  @JsonKey(includeToJson: false)
   final String $id;
   @override
   final String email;
   @override
-  final DateTime $createdAt;
+  final String name;
+// ignore: invalid_annotation_target
   @override
+  @JsonKey(includeToJson: false)
+  final DateTime $createdAt;
+// ignore: invalid_annotation_target
+  @override
+  @JsonKey(includeToJson: false)
   final DateTime $updatedAt;
   @override
   final String? profileImage;
@@ -198,7 +226,7 @@ class _$ArtistDtoImpl extends _ArtistDto {
 
   @override
   String toString() {
-    return 'ArtistDto(\$id: ${$id}, email: $email, \$createdAt: ${$createdAt}, \$updatedAt: ${$updatedAt}, profileImage: $profileImage, phoneNumber: $phoneNumber)';
+    return 'ArtistDto(\$id: ${$id}, email: $email, name: $name, \$createdAt: ${$createdAt}, \$updatedAt: ${$updatedAt}, profileImage: $profileImage, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -208,6 +236,7 @@ class _$ArtistDtoImpl extends _ArtistDto {
             other is _$ArtistDtoImpl &&
             (identical(other.$id, $id) || other.$id == $id) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.$createdAt, $createdAt) ||
                 other.$createdAt == $createdAt) &&
             (identical(other.$updatedAt, $updatedAt) ||
@@ -220,7 +249,7 @@ class _$ArtistDtoImpl extends _ArtistDto {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, $id, email, $createdAt,
+  int get hashCode => Object.hash(runtimeType, $id, email, name, $createdAt,
       $updatedAt, profileImage, phoneNumber);
 
   /// Create a copy of ArtistDto
@@ -241,10 +270,11 @@ class _$ArtistDtoImpl extends _ArtistDto {
 
 abstract class _ArtistDto extends ArtistDto {
   const factory _ArtistDto(
-      {required final String $id,
+      {@JsonKey(includeToJson: false) required final String $id,
       required final String email,
-      required final DateTime $createdAt,
-      required final DateTime $updatedAt,
+      required final String name,
+      @JsonKey(includeToJson: false) required final DateTime $createdAt,
+      @JsonKey(includeToJson: false) required final DateTime $updatedAt,
       final String? profileImage,
       final String? phoneNumber}) = _$ArtistDtoImpl;
   const _ArtistDto._() : super._();
@@ -252,13 +282,19 @@ abstract class _ArtistDto extends ArtistDto {
   factory _ArtistDto.fromJson(Map<String, dynamic> json) =
       _$ArtistDtoImpl.fromJson;
 
+// ignore: invalid_annotation_target
   @override
+  @JsonKey(includeToJson: false)
   String get $id;
   @override
   String get email;
   @override
-  DateTime get $createdAt;
+  String get name; // ignore: invalid_annotation_target
   @override
+  @JsonKey(includeToJson: false)
+  DateTime get $createdAt; // ignore: invalid_annotation_target
+  @override
+  @JsonKey(includeToJson: false)
   DateTime get $updatedAt;
   @override
   String? get profileImage;

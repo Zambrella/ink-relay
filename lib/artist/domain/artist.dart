@@ -44,8 +44,18 @@ class Artist implements Equatable {
   @override
   bool? get stringify => true;
 
-  @override
-  String toString() {
-    return 'Artist(id: $id, name: $name, email: $email, phoneNumber: $phoneNumber, studio: $studio, profilePictureId: $profilePictureId, createdAt: $createdAt, updatedAt: $updatedAt)';
+  Artist updateEmail(ContactEmail email) {
+    final isValid = email.isValid;
+    if (!isValid) {
+      throw ArgumentError.value(email, 'email', 'Invalid email');
+    }
+    return copyWith(email: email);
+  }
+
+  Artist updateName(String name) {
+    if (name.isEmpty) {
+      throw ArgumentError.value(name, 'name', 'Name cannot be empty');
+    }
+    return copyWith(name: name);
   }
 }

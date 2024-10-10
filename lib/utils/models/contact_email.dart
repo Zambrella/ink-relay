@@ -7,6 +7,5 @@ extension type ContactEmail(String email) {
     required String tld,
   }) : email = '$name@$domain.$tld';
 
-  // TODO: Replace this with a more robust email validation
   bool get isValid => EmailValidator.validate(email);
 }

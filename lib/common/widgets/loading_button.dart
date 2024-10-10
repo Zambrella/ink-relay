@@ -18,7 +18,11 @@ class LoadingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FilledButton.icon(
-      onPressed: isLoading ? null : onPressed,
+      onPressed: () {
+        if (!isLoading) {
+          onPressed();
+        }
+      },
       icon: isLoading
           ? Container(
               width: 24,

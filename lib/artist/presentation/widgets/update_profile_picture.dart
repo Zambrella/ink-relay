@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ink_relay/artist/domain/artist.dart';
 import 'package:ink_relay/common/widgets/loading_button.dart';
 import 'package:ink_relay/theme/theme.dart';
 
 class UpdateProfilePicture extends ConsumerStatefulWidget {
-  const UpdateProfilePicture({super.key});
+  const UpdateProfilePicture({
+    required this.artist,
+    super.key,
+  });
+
+  final Artist artist;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -12,6 +18,14 @@ class UpdateProfilePicture extends ConsumerStatefulWidget {
 }
 
 class _UpdateProfilePictureState extends ConsumerState<UpdateProfilePicture> {
+  Artist get artist => widget.artist;
+
+  String get artistInitials {
+    final name = artist.name;
+    final initials = name.split(' ').map((e) => e[0].toUpperCase()).join();
+    return initials;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,7 +35,7 @@ class _UpdateProfilePictureState extends ConsumerState<UpdateProfilePicture> {
           minRadius: 32,
           maxRadius: 72,
           child: Text(
-            'JD',
+            artistInitials,
             style: context.theme.textTheme.headlineSmall!.copyWith(
               color: context.theme.colorScheme.onSurface.withOpacity(0.7),
               fontSize: 32,

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ink_relay/app_dependencies.dart';
 import 'package:ink_relay/app_exception.dart';
+import 'package:ink_relay/artist/providers/user_artist_provider.dart';
 import 'package:ink_relay/authentication/presentation/controllers/logout_controller.dart';
 import 'package:ink_relay/common/extensions/toastification_extensions.dart';
 import 'package:ink_relay/routing/app_router.dart';
@@ -133,35 +134,40 @@ class _ProfileMenuState extends ConsumerState<ProfileMenu> {
         ),
       ],
       builder: (context, MenuController controller, Widget? child) {
-        return InkWell(
-          focusNode: _buttonFocusNode,
-          onTap: () {
-            if (controller.isOpen) {
-              controller.close();
-            } else {
-              controller.open();
-            }
-          },
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: context.theme.appSpacing.small,
-              horizontal: context.theme.appSpacing.large,
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CircleAvatar(),
-                SizedBox(width: context.theme.appSpacing.small),
-                Text('John Doe'),
-                SizedBox(width: context.theme.appSpacing.small),
-                const Icon(
-                  Icons.arrow_drop_down,
-                  size: 16,
+        return switch (ref.watch(userArtistProvider)) {
+          AsyncData(valueOrNull: final artist?) => InkWell(
+              focusNode: _buttonFocusNode,
+              onTap: () {
+                if (controller.isOpen) {
+                  controller.close();
+                } else {
+                  controller.open();
+                }
+              },
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: context.theme.appSpacing.small,
+                  horizontal: context.theme.appSpacing.large,
                 ),
-              ],
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    CircleAvatar(),
+                    SizedBox(width: context.theme.appSpacing.small),
+                    Text(artist.name),
+                    SizedBox(width: context.theme.appSpacing.small),
+                    const Icon(
+                      Icons.arrow_drop_down,
+                      size: 16,
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-        );
+          _ => const Center(
+              child: CircularProgressIndicator(),
+            ), // TOOD: Replace with cool shimmer
+        };
       },
     );
   }

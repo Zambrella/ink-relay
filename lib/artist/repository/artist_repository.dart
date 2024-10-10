@@ -48,4 +48,29 @@ class ArtistRepository {
       rethrow;
     }
   }
+
+  Future<ArtistDto> updateUserArtist(ArtistDto artist) async {
+    try {
+      final artistDoc = await db.updateDocument(
+        databaseId: AppwriteIds.mainDatbaseId,
+        collectionId: AppwriteIds.artistCollectionId,
+        documentId: artist.$id,
+        data: artist.toJson(),
+      );
+      log(
+        'Updated artist doc: ${artist.$id}',
+        name: 'ArtistRepository',
+      );
+      final artistDto = ArtistDto.fromJson(artistDoc.data);
+      return artistDto;
+    } catch (e, st) {
+      log(
+        e.toString(),
+        error: e,
+        stackTrace: st,
+        name: 'ArtistRepository',
+      );
+      rethrow;
+    }
+  }
 }

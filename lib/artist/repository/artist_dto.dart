@@ -10,10 +10,14 @@ part 'artist_dto.g.dart';
 @freezed
 class ArtistDto with _$ArtistDto {
   const factory ArtistDto({
-    required String $id,
+    // ignore: invalid_annotation_target
+    @JsonKey(includeToJson: false) required String $id,
     required String email,
-    required DateTime $createdAt,
-    required DateTime $updatedAt,
+    required String name,
+    // ignore: invalid_annotation_target
+    @JsonKey(includeToJson: false) required DateTime $createdAt,
+    // ignore: invalid_annotation_target
+    @JsonKey(includeToJson: false) required DateTime $updatedAt,
     String? profileImage,
     String? phoneNumber,
   }) = _ArtistDto;
@@ -23,10 +27,22 @@ class ArtistDto with _$ArtistDto {
   factory ArtistDto.fromJson(Map<String, dynamic> json) =>
       _$ArtistDtoFromJson(json);
 
-  Artist toDomain({required String artistName}) {
+  factory ArtistDto.fromDomain(Artist artist) {
+    return ArtistDto(
+      $id: artist.id.toString(),
+      email: artist.email.toString(),
+      name: artist.name,
+      $createdAt: artist.createdAt,
+      $updatedAt: artist.updatedAt,
+      profileImage: artist.profilePictureId,
+      phoneNumber: artist.phoneNumber?.toString(),
+    );
+  }
+
+  Artist toDomain() {
     return Artist(
       id: Identifier($id),
-      name: artistName,
+      name: name,
       createdAt: $createdAt,
       updatedAt: $updatedAt,
       profilePictureId: profileImage,
