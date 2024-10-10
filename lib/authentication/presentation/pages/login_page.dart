@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ink_relay/routing/app_router.dart';
-import 'package:go_router/go_router.dart';
+import 'package:ink_relay/authentication/presentation/widgets/login_form.dart';
+import 'package:ink_relay/theme/form_factor.dart';
+import 'package:ink_relay/theme/theme_extensions.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -9,22 +10,16 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                context.goNamed(AppRoute.calendar.name);
-              },
-              child: const Text('Login'),
+        child: Card(
+          elevation: 5,
+          surfaceTintColor: context.theme.colorScheme.surfaceTint,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: FormFactor.mobile.breakpoint),
+            child: Padding(
+              padding: EdgeInsets.all(context.theme.appSpacing.veryLarge),
+              child: const LoginForm(),
             ),
-            ElevatedButton(
-              onPressed: () {
-                context.goNamed(AppRoute.register.name);
-              },
-              child: const Text('Register'),
-            ),
-          ],
+          ),
         ),
       ),
     );

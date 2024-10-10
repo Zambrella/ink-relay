@@ -14,18 +14,18 @@ class RegisterController extends _$RegisterController {
     return null;
   }
 
-  Future<void> register() async {
+  Future<void> register(String email, String password) async {
     state = const AsyncLoading();
     try {
-      await Future<void>.delayed(const Duration(seconds: 2));
       final _ = await ref.read(authRepositoryProvider).signUp(
-            email: '1234@test.com',
-            password: 'mag1c1an123',
+            email: email,
+            password: password,
           );
-      // At this point, the app will have navigated to the login page.
       await ref.read(analyticsRepositoryProvider).logCustomEvent(
-            RegisterCustomEvent(email: '1234@test.com'),
+            RegisterCustomEvent(email: email),
           );
+      // Needed to let the user auth state to propogate through providers
+      await Future<void>.delayed(const Duration(milliseconds: 100));
       state = const AsyncData(null);
     } catch (e, st) {
       ref.read(loggerProvider).e(e, stackTrace: st);

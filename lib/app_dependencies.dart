@@ -9,10 +9,10 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:error_logging_core/error_logging_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ink_relay/authentication/providers/authentication_providers.dart';
 import 'package:ink_relay/flavors.dart';
 import 'package:ink_relay/repository_providers.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:pub_semver/pub_semver.dart';
@@ -98,7 +98,7 @@ FutureOr<void> serviceInitialisation(ServiceInitialisationRef ref) async {
 
   // Waiting for the intial auth event to complete to prevent potential of going from loading -> unauthenticated -> authenticated
   // when the user is already authenticated, it's just that the auth state hasn't been emitted yet.
-  final _ = await ref.read(authStateChangesProvider.future);
+  final _ = ref.read(authStateChangesProvider);
 
   // Initialize services
   await ref.read(errorLoggingRepositoryProvider).init();

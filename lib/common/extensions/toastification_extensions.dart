@@ -7,7 +7,8 @@ extension ToastificationX on Toastification {
       {required BuildContext context, required String message}) {
     return show(
       context: context,
-      title: Text(message),
+      title: Text('Success'),
+      description: Text(message),
       type: ToastificationType.success,
       style: ToastificationStyle.flatColored,
       primaryColor: context.theme.semanticColors.success,
@@ -32,7 +33,8 @@ extension ToastificationX on Toastification {
       {required BuildContext context, required String message}) {
     return show(
       context: context,
-      title: Text(message),
+      title: Text('Warning'),
+      description: Text(message),
       type: ToastificationType.success,
       style: ToastificationStyle.flatColored,
       primaryColor: context.theme.semanticColors.warning,
@@ -57,7 +59,8 @@ extension ToastificationX on Toastification {
       {required BuildContext context, required String message}) {
     return show(
       context: context,
-      title: Text(message),
+      title: const Text('Error'),
+      description: Text(message),
       type: ToastificationType.error,
       style: ToastificationStyle.flatColored,
       primaryColor: context.theme.semanticColors.error,

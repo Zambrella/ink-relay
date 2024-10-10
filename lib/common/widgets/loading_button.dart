@@ -11,7 +11,7 @@ class LoadingButton extends StatelessWidget {
   });
 
   final String label;
-  final IconData icon;
+  final IconData? icon;
   final bool isLoading;
   final VoidCallback onPressed;
 

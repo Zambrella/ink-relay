@@ -15,6 +15,10 @@ abstract class _$ArtistCWProxy {
 
   Artist phoneNumber(PhoneNumber? phoneNumber);
 
+  Artist studio(Studio? studio);
+
+  Artist profilePictureId(String? profilePictureId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Artist(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -26,6 +30,8 @@ abstract class _$ArtistCWProxy {
     String? name,
     ContactEmail? email,
     PhoneNumber? phoneNumber,
+    Studio? studio,
+    String? profilePictureId,
   });
 }
 
@@ -49,6 +55,13 @@ class _$ArtistCWProxyImpl implements _$ArtistCWProxy {
       this(phoneNumber: phoneNumber);
 
   @override
+  Artist studio(Studio? studio) => this(studio: studio);
+
+  @override
+  Artist profilePictureId(String? profilePictureId) =>
+      this(profilePictureId: profilePictureId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Artist(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -61,6 +74,8 @@ class _$ArtistCWProxyImpl implements _$ArtistCWProxy {
     Object? name = const $CopyWithPlaceholder(),
     Object? email = const $CopyWithPlaceholder(),
     Object? phoneNumber = const $CopyWithPlaceholder(),
+    Object? studio = const $CopyWithPlaceholder(),
+    Object? profilePictureId = const $CopyWithPlaceholder(),
   }) {
     return Artist(
       id: id == const $CopyWithPlaceholder() || id == null
@@ -79,6 +94,14 @@ class _$ArtistCWProxyImpl implements _$ArtistCWProxy {
           ? _value.phoneNumber
           // ignore: cast_nullable_to_non_nullable
           : phoneNumber as PhoneNumber?,
+      studio: studio == const $CopyWithPlaceholder()
+          ? _value.studio
+          // ignore: cast_nullable_to_non_nullable
+          : studio as Studio?,
+      profilePictureId: profilePictureId == const $CopyWithPlaceholder()
+          ? _value.profilePictureId
+          // ignore: cast_nullable_to_non_nullable
+          : profilePictureId as String?,
     );
   }
 }
