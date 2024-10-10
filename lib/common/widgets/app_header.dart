@@ -153,6 +153,11 @@ class _ProfileMenuState extends ConsumerState<ProfileMenu> {
                 CircleAvatar(),
                 SizedBox(width: context.theme.appSpacing.small),
                 Text('John Doe'),
+                SizedBox(width: context.theme.appSpacing.small),
+                const Icon(
+                  Icons.arrow_drop_down,
+                  size: 16,
+                ),
               ],
             ),
           ),

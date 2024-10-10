@@ -50,7 +50,6 @@ GoRouter goRouter(GoRouterRef ref) {
     redirect: (context, state) {
       final path = state.uri.path;
       final isLoggedIn = ref.read(currentUserProvider) != null;
-      print('Is logged in: $isLoggedIn');
 
       // Redirect to home page if navigating to login pages while logged in
       if (isLoggedIn) {
