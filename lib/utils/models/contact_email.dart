@@ -1,3 +1,5 @@
+import 'package:email_validator/email_validator.dart';
+
 extension type ContactEmail(String email) {
   ContactEmail.fromParts({
     required String name,
@@ -6,6 +8,5 @@ extension type ContactEmail(String email) {
   }) : email = '$name@$domain.$tld';
 
   // TODO: Replace this with a more robust email validation
-  bool get isValid =>
-      RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
+  bool get isValid => EmailValidator.validate(email);
 }

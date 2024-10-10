@@ -1,26 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_controller.dart';
+part of 'artist_repository_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginControllerHash() => r'b18b8a32e5f52e96814b78390ff04b515bcfa290';
+String _$artistRepositoryHash() => r'b4aa9ac80e390a86a9613e18fe801bca1c875fb6';
 
-/// See also [LoginController].
-@ProviderFor(LoginController)
-final loginControllerProvider =
-    AutoDisposeAsyncNotifierProvider<LoginController, void>.internal(
-  LoginController.new,
-  name: r'loginControllerProvider',
+/// See also [artistRepository].
+@ProviderFor(artistRepository)
+final artistRepositoryProvider = Provider<ArtistRepository>.internal(
+  artistRepository,
+  name: r'artistRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$loginControllerHash,
+      : _$artistRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$LoginController = AutoDisposeAsyncNotifier<void>;
+typedef ArtistRepositoryRef = ProviderRef<ArtistRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

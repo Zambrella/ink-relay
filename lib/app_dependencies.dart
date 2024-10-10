@@ -11,6 +11,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ink_relay/authentication/providers/authentication_providers.dart';
+import 'package:ink_relay/common/appwrite_ids.dart';
 import 'package:ink_relay/flavors.dart';
 import 'package:ink_relay/repository_providers.dart';
 import 'package:logger/logger.dart';
@@ -72,7 +73,7 @@ Future<AppDependencies> appDependencies(
         'https://cloud.appwrite.io/v1',
       )
       .setProject(
-        '6702a30e000740536df1',
+        AppwriteIds.projectId,
       )
       .setSelfSigned(
         status: flavor == Flavor.dev,

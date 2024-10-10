@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ink_relay/artist/domain/presentation/widgets/update_profile.dart';
+import 'package:ink_relay/artist/presentation/widgets/update_profile.dart';
 import 'package:ink_relay/theme/theme.dart';
 
 class ArtistProfilePage extends ConsumerStatefulWidget {

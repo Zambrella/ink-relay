@@ -6,7 +6,7 @@ part of 'app_dependencies.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appDependenciesHash() => r'0573ac06bc5fb3a590f5447ed0394178f054c352';
+String _$appDependenciesHash() => r'e2c19f5680473dbb4bf7ecdc816c2ee2f1443e55';
 
 /// See also [appDependencies].
 @ProviderFor(appDependencies)
@@ -22,7 +22,7 @@ final appDependenciesProvider = FutureProvider<AppDependencies>.internal(
 
 typedef AppDependenciesRef = FutureProviderRef<AppDependencies>;
 String _$serviceInitialisationHash() =>
-    r'3f1b2047ebeb82fb9e437935949f436ad3203f2b';
+    r'dba16d0329389843c710ea66f3b4ebe5e25af621';
 
 /// See also [serviceInitialisation].
 @ProviderFor(serviceInitialisation)

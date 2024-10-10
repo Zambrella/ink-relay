@@ -11,6 +11,10 @@ abstract class _$ArtistCWProxy {
 
   Artist name(String name);
 
+  Artist createdAt(DateTime createdAt);
+
+  Artist updatedAt(DateTime updatedAt);
+
   Artist email(ContactEmail? email);
 
   Artist phoneNumber(PhoneNumber? phoneNumber);
@@ -28,6 +32,8 @@ abstract class _$ArtistCWProxy {
   Artist call({
     Identifier? id,
     String? name,
+    DateTime? createdAt,
+    DateTime? updatedAt,
     ContactEmail? email,
     PhoneNumber? phoneNumber,
     Studio? studio,
@@ -46,6 +52,12 @@ class _$ArtistCWProxyImpl implements _$ArtistCWProxy {
 
   @override
   Artist name(String name) => this(name: name);
+
+  @override
+  Artist createdAt(DateTime createdAt) => this(createdAt: createdAt);
+
+  @override
+  Artist updatedAt(DateTime updatedAt) => this(updatedAt: updatedAt);
 
   @override
   Artist email(ContactEmail? email) => this(email: email);
@@ -72,6 +84,8 @@ class _$ArtistCWProxyImpl implements _$ArtistCWProxy {
   Artist call({
     Object? id = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
+    Object? createdAt = const $CopyWithPlaceholder(),
+    Object? updatedAt = const $CopyWithPlaceholder(),
     Object? email = const $CopyWithPlaceholder(),
     Object? phoneNumber = const $CopyWithPlaceholder(),
     Object? studio = const $CopyWithPlaceholder(),
@@ -86,6 +100,14 @@ class _$ArtistCWProxyImpl implements _$ArtistCWProxy {
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
           : name as String,
+      createdAt: createdAt == const $CopyWithPlaceholder() || createdAt == null
+          ? _value.createdAt
+          // ignore: cast_nullable_to_non_nullable
+          : createdAt as DateTime,
+      updatedAt: updatedAt == const $CopyWithPlaceholder() || updatedAt == null
+          ? _value.updatedAt
+          // ignore: cast_nullable_to_non_nullable
+          : updatedAt as DateTime,
       email: email == const $CopyWithPlaceholder()
           ? _value.email
           // ignore: cast_nullable_to_non_nullable

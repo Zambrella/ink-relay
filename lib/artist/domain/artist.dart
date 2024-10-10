@@ -12,6 +12,8 @@ class Artist implements Equatable {
   const Artist({
     required this.id,
     required this.name,
+    required this.createdAt,
+    required this.updatedAt,
     this.email,
     this.phoneNumber,
     this.studio,
@@ -24,6 +26,8 @@ class Artist implements Equatable {
   final PhoneNumber? phoneNumber;
   final Studio? studio;
   final String? profilePictureId;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
   @override
   List<Object?> get props => [
@@ -33,8 +37,15 @@ class Artist implements Equatable {
         phoneNumber,
         studio,
         profilePictureId,
+        createdAt,
+        updatedAt,
       ];
 
   @override
   bool? get stringify => true;
+
+  @override
+  String toString() {
+    return 'Artist(id: $id, name: $name, email: $email, phoneNumber: $phoneNumber, studio: $studio, profilePictureId: $profilePictureId, createdAt: $createdAt, updatedAt: $updatedAt)';
+  }
 }

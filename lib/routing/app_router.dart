@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ink_relay/artist/domain/presentation/pages/artist_profile_page.dart';
+import 'package:ink_relay/artist/presentation/pages/artist_profile_page.dart';
 import 'package:ink_relay/authentication/presentation/pages/login_page.dart';
 import 'package:ink_relay/authentication/presentation/pages/register_page.dart';
 import 'package:ink_relay/authentication/providers/authentication_providers.dart';
