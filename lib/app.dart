@@ -1,3 +1,4 @@
+import 'package:calendar_view/calendar_view.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -120,9 +121,12 @@ class _InitCompleteState extends ConsumerState<InitComplete> {
         config: const ToastificationConfig(
           alignment: Alignment.topCenter,
         ),
-        child: FormFactorWidget(
-          formFactor: formFactor,
-          child: widget.child,
+        child: CalendarControllerProvider(
+          controller: EventController(),
+          child: FormFactorWidget(
+            formFactor: formFactor,
+            child: widget.child,
+          ),
         ),
       ),
     );

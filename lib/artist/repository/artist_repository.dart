@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:appwrite/appwrite.dart';
 import 'package:ink_relay/artist/repository/artist_dto.dart';
 import 'package:ink_relay/common/appwrite_ids.dart';
+import 'package:ink_relay/common/extensions.dart';
 import 'package:ink_relay/common/models/photo_upload.dart';
-import 'package:ink_relay/utils/extensions/pretty_print_map.dart';
 
 class ArtistRepository {
   const ArtistRepository({

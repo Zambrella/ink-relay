@@ -1,6 +1,6 @@
 import 'package:ink_relay/artist/providers/artist_service_provider.dart';
 import 'package:ink_relay/artist/providers/user_artist_provider.dart';
-import 'package:ink_relay/utils/models/contact_email.dart';
+import 'package:ink_relay/common/models.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'update_artist_contact_email_controller.g.dart';

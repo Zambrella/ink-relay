@@ -7,7 +7,7 @@ part of 'artist_profile_image_provider.dart';
 // **************************************************************************
 
 String _$artistProfileImageHash() =>
-    r'ea052312de17564b060164d5c8280d40304c26cf';
+    r'478eca6f387c33aa561ba511a3a2fae7c78dea9c';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -76,7 +76,7 @@ class ArtistProfileImageFamily extends Family<AsyncValue<Uint8List>> {
 }
 
 /// See also [artistProfileImage].
-class ArtistProfileImageProvider extends AutoDisposeFutureProvider<Uint8List> {
+class ArtistProfileImageProvider extends FutureProvider<Uint8List> {
   /// See also [artistProfileImage].
   ArtistProfileImageProvider(
     String imageId,
@@ -134,7 +134,7 @@ class ArtistProfileImageProvider extends AutoDisposeFutureProvider<Uint8List> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<Uint8List> createElement() {
+  FutureProviderElement<Uint8List> createElement() {
     return _ArtistProfileImageProviderElement(this);
   }
 
@@ -155,7 +155,7 @@ class ArtistProfileImageProvider extends AutoDisposeFutureProvider<Uint8List> {
   }
 }
 
-mixin ArtistProfileImageRef on AutoDisposeFutureProviderRef<Uint8List> {
+mixin ArtistProfileImageRef on FutureProviderRef<Uint8List> {
   /// The parameter `imageId` of this provider.
   String get imageId;
 
@@ -164,8 +164,7 @@ mixin ArtistProfileImageRef on AutoDisposeFutureProviderRef<Uint8List> {
 }
 
 class _ArtistProfileImageProviderElement
-    extends AutoDisposeFutureProviderElement<Uint8List>
-    with ArtistProfileImageRef {
+    extends FutureProviderElement<Uint8List> with ArtistProfileImageRef {
   _ArtistProfileImageProviderElement(super.provider);
 
   @override

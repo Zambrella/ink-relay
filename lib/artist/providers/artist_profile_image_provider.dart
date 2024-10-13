@@ -6,7 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'artist_profile_image_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 FutureOr<Uint8List> artistProfileImage(
   ArtistProfileImageRef ref,
   String imageId,

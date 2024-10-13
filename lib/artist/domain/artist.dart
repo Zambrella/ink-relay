@@ -1,9 +1,7 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ink_relay/artist/domain/studio.dart';
-import 'package:ink_relay/utils/models/contact_email.dart';
-import 'package:ink_relay/utils/models/identifier.dart';
-import 'package:ink_relay/utils/models/phone_number.dart';
+import 'package:ink_relay/common/models.dart';
 
 part 'artist.g.dart';
 

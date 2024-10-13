@@ -1,8 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ink_relay/artist/domain/artist.dart';
-import 'package:ink_relay/utils/models/contact_email.dart';
-import 'package:ink_relay/utils/models/identifier.dart';
-import 'package:ink_relay/utils/models/phone_number.dart';
+import 'package:ink_relay/common/models.dart';
 
 part 'artist_dto.freezed.dart';
 part 'artist_dto.g.dart';

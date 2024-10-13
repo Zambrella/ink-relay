@@ -10,6 +10,7 @@ import 'package:ink_relay/theme/theme.dart';
 import 'package:toastification/toastification.dart';
 
 // TODO: Add the ability to crop the image before uploading it.
+// TODO: Delete old profile picture after uploading a new one.
 
 class UpdateProfilePicture extends ConsumerStatefulWidget {
   const UpdateProfilePicture({
