@@ -8,6 +8,7 @@ abstract class ArtistService {
   /// Update the current user's `Artist`.
   Future<Artist> updateUserArtist(Artist artist);
 
-  /// Upload the current user's profile picture.
-  Future<Artist> uploadUserArtistProfilePicture(PhotoUpload photoUpload);
+  /// Upload the current user's Artist's profile picture.
+  /// Returns the id of the uploaded file.
+  Future<String> uploadUserArtistProfilePicture(PhotoUpload photoUpload);
 }

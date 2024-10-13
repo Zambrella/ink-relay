@@ -11,7 +11,6 @@ class UpdateArtistNameController extends _$UpdateArtistNameController {
 
   Future<void> updateArtistName(String name) async {
     state = const AsyncLoading();
-    await Future.delayed(const Duration(seconds: 10));
     try {
       final updatedArtist =
           ref.read(userArtistProvider).requireValue.updateName(name);

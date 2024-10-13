@@ -26,8 +26,8 @@ class ArtistServiceImpl implements ArtistService {
   }
 
   @override
-  Future<Artist> uploadUserArtistProfilePicture(PhotoUpload photoUpload) {
-    // TODO: implement uploadUserArtistProfilePicture
-    throw UnimplementedError();
+  Future<String> uploadUserArtistProfilePicture(PhotoUpload photoUpload) async {
+    final fileId = await _artistRepository.uploadArtistPhoto(photoUpload);
+    return fileId;
   }
 }

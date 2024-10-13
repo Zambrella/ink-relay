@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:appwrite/appwrite.dart';
 import 'package:ink_relay/artist/repository/artist_dto.dart';
 import 'package:ink_relay/common/appwrite_ids.dart';
+import 'package:ink_relay/common/models/photo_upload.dart';
 import 'package:ink_relay/utils/extensions/pretty_print_map.dart';
 
 class ArtistRepository {
@@ -72,5 +73,25 @@ class ArtistRepository {
       );
       rethrow;
     }
+  }
+
+  Future<String> uploadArtistPhoto(PhotoUpload photoUpload) async {
+    final user = await account.get();
+    final userId = user.$id;
+    final file = await storage.createFile(
+      bucketId: AppwriteIds.profilePictureStorageId,
+      fileId: ID.unique(),
+      file: InputFile.fromBytes(
+        bytes: photoUpload.fileBytes,
+        filename: '${userId}_profile_image.png',
+      ),
+      permissions: [
+        Permission.read(Role.any()),
+        Permission.write(Role.user(userId)),
+        Permission.delete(Role.user(userId)),
+        Permission.update(Role.user(userId)),
+      ],
+    );
+    return file.$id;
   }
 }

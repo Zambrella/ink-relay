@@ -47,15 +47,34 @@ class Artist implements Equatable {
   Artist updateEmail(ContactEmail email) {
     final isValid = email.isValid;
     if (!isValid) {
-      throw ArgumentError.value(email, 'email', 'Invalid email');
+      throw ArgumentError.value(
+        email,
+        'email',
+        'Invalid email',
+      );
     }
     return copyWith(email: email);
   }
 
   Artist updateName(String name) {
     if (name.isEmpty) {
-      throw ArgumentError.value(name, 'name', 'Name cannot be empty');
+      throw ArgumentError.value(
+        name,
+        'name',
+        'Name cannot be empty',
+      );
     }
     return copyWith(name: name);
+  }
+
+  Artist updateProfilePictureId(String profilePictureId) {
+    if (profilePictureId.isEmpty) {
+      throw ArgumentError.value(
+        profilePictureId,
+        'profilePictureId',
+        'Profile picture ID cannot be empty',
+      );
+    }
+    return copyWith(profilePictureId: profilePictureId);
   }
 }

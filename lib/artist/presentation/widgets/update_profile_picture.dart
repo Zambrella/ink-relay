@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ink_relay/app_exception.dart';
 import 'package:ink_relay/artist/domain/artist.dart';
+import 'package:ink_relay/artist/presentation/controllers/update_artist_profile_image_controller.dart';
+import 'package:ink_relay/artist/presentation/widgets/artist_avatar.dart';
+import 'package:ink_relay/common/extensions/toastification_extensions.dart';
 import 'package:ink_relay/common/widgets/loading_button.dart';
 import 'package:ink_relay/theme/theme.dart';
+import 'package:toastification/toastification.dart';
+
+// TODO: Add the ability to crop the image before uploading it.
 
 class UpdateProfilePicture extends ConsumerStatefulWidget {
   const UpdateProfilePicture({
@@ -28,26 +35,40 @@ class _UpdateProfilePictureState extends ConsumerState<UpdateProfilePicture> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(updateArtistProfileImageControllerProvider, (prev, state) {
+      if (prev != null && prev.isLoading && state is AsyncData) {
+        toastification.showSuccess(
+          context: context,
+          message: 'Photo uploaded',
+        );
+      }
+
+      if (state is AsyncError) {
+        toastification.showError(
+          context: context,
+          message: state.error.errorMessage(context),
+        );
+      }
+    });
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        CircleAvatar(
-          minRadius: 32,
-          maxRadius: 72,
-          child: Text(
-            artistInitials,
-            style: context.theme.textTheme.headlineSmall!.copyWith(
-              color: context.theme.colorScheme.onSurface.withOpacity(0.7),
-              fontSize: 32,
-            ),
-          ),
+        ArtistAvatar(
+          artist: artist,
+          maxSize: 72,
         ),
         SizedBox(height: context.theme.appSpacing.small),
         LoadingButton(
           label: 'Upload photo',
           icon: Icons.upload,
-          isLoading: false,
-          onPressed: () {},
+          isLoading:
+              ref.watch(updateArtistProfileImageControllerProvider).isLoading,
+          onPressed: () async {
+            await ref
+                .read(updateArtistProfileImageControllerProvider.notifier)
+                .updateArtistProfileImage();
+          },
         ),
       ],
     );

@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ink_relay/app_dependencies.dart';
 import 'package:ink_relay/app_exception.dart';
+import 'package:ink_relay/artist/presentation/widgets/artist_avatar.dart';
+import 'package:ink_relay/artist/providers/artist_profile_image_provider.dart';
 import 'package:ink_relay/artist/providers/user_artist_provider.dart';
 import 'package:ink_relay/authentication/presentation/controllers/logout_controller.dart';
 import 'package:ink_relay/common/extensions/toastification_extensions.dart';
@@ -152,7 +154,10 @@ class _ProfileMenuState extends ConsumerState<ProfileMenu> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    CircleAvatar(),
+                    ArtistAvatar(
+                      artist: artist,
+                      maxSize: 32,
+                    ),
                     SizedBox(width: context.theme.appSpacing.small),
                     Text(artist.name),
                     SizedBox(width: context.theme.appSpacing.small),
