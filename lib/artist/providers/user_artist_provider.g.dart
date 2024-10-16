@@ -6,11 +6,11 @@ part of 'user_artist_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$userArtistHash() => r'31e7c0b8d71b38166c8eb95fc581c363a3d90856';
+String _$userArtistHash() => r'7a4dfc73a0d7f68075a0d444678df426e8f90c30';
 
 /// See also [userArtist].
 @ProviderFor(userArtist)
-final userArtistProvider = AutoDisposeFutureProvider<Artist>.internal(
+final userArtistProvider = FutureProvider<Artist>.internal(
   userArtist,
   name: r'userArtistProvider',
   debugGetCreateSourceHash:
@@ -19,6 +19,20 @@ final userArtistProvider = AutoDisposeFutureProvider<Artist>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef UserArtistRef = AutoDisposeFutureProviderRef<Artist>;
+typedef UserArtistRef = FutureProviderRef<Artist>;
+String _$userArtistIdHash() => r'989adee0445d81d5c90194e77f445d5c73d09d46';
+
+/// See also [userArtistId].
+@ProviderFor(userArtistId)
+final userArtistIdProvider = Provider<AsyncValue<String>>.internal(
+  userArtistId,
+  name: r'userArtistIdProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$userArtistIdHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef UserArtistIdRef = ProviderRef<AsyncValue<String>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
