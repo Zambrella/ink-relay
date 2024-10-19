@@ -20,18 +20,21 @@ TattooSessionDto _$TattooSessionDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TattooSessionDto {
-// ignore: invalid_annotation_target
   @JsonKey(includeToJson: false)
-  String get $id =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  String get $id => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false)
-  DateTime get $createdAt =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  DateTime get $createdAt => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false)
   DateTime get $updatedAt => throw _privateConstructorUsedError;
   DateTime get when => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
+  String get status =>
+      throw _privateConstructorUsedError; // Not interested in the entire artist object, just the id.
+  @JsonKey(readValue: TattooSessionDto._artistIdFromJson)
+  String get artist =>
+      throw _privateConstructorUsedError; // Only need to save the id to the database because it's a relation.
+  @JsonKey(toJson: TattooSessionDto._contactToJson)
+  ContactDto get contact => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
 
   /// Serializes this TattooSessionDto to a JSON map.
@@ -57,7 +60,11 @@ abstract class $TattooSessionDtoCopyWith<$Res> {
       DateTime when,
       int duration,
       String status,
+      @JsonKey(readValue: TattooSessionDto._artistIdFromJson) String artist,
+      @JsonKey(toJson: TattooSessionDto._contactToJson) ContactDto contact,
       String? notes});
+
+  $ContactDtoCopyWith<$Res> get contact;
 }
 
 /// @nodoc
@@ -81,6 +88,8 @@ class _$TattooSessionDtoCopyWithImpl<$Res, $Val extends TattooSessionDto>
     Object? when = null,
     Object? duration = null,
     Object? status = null,
+    Object? artist = null,
+    Object? contact = null,
     Object? notes = freezed,
   }) {
     return _then(_value.copyWith(
@@ -108,11 +117,29 @@ class _$TattooSessionDtoCopyWithImpl<$Res, $Val extends TattooSessionDto>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      artist: null == artist
+          ? _value.artist
+          : artist // ignore: cast_nullable_to_non_nullable
+              as String,
+      contact: null == contact
+          ? _value.contact
+          : contact // ignore: cast_nullable_to_non_nullable
+              as ContactDto,
       notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  /// Create a copy of TattooSessionDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ContactDtoCopyWith<$Res> get contact {
+    return $ContactDtoCopyWith<$Res>(_value.contact, (value) {
+      return _then(_value.copyWith(contact: value) as $Val);
+    });
   }
 }
 
@@ -131,7 +158,12 @@ abstract class _$$TattooSessionDtoImplCopyWith<$Res>
       DateTime when,
       int duration,
       String status,
+      @JsonKey(readValue: TattooSessionDto._artistIdFromJson) String artist,
+      @JsonKey(toJson: TattooSessionDto._contactToJson) ContactDto contact,
       String? notes});
+
+  @override
+  $ContactDtoCopyWith<$Res> get contact;
 }
 
 /// @nodoc
@@ -153,6 +185,8 @@ class __$$TattooSessionDtoImplCopyWithImpl<$Res>
     Object? when = null,
     Object? duration = null,
     Object? status = null,
+    Object? artist = null,
+    Object? contact = null,
     Object? notes = freezed,
   }) {
     return _then(_$TattooSessionDtoImpl(
@@ -180,6 +214,14 @@ class __$$TattooSessionDtoImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      artist: null == artist
+          ? _value.artist
+          : artist // ignore: cast_nullable_to_non_nullable
+              as String,
+      contact: null == contact
+          ? _value.contact
+          : contact // ignore: cast_nullable_to_non_nullable
+              as ContactDto,
       notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -198,21 +240,21 @@ class _$TattooSessionDtoImpl extends _TattooSessionDto {
       required this.when,
       required this.duration,
       required this.status,
+      @JsonKey(readValue: TattooSessionDto._artistIdFromJson)
+      required this.artist,
+      @JsonKey(toJson: TattooSessionDto._contactToJson) required this.contact,
       this.notes})
       : super._();
 
   factory _$TattooSessionDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$TattooSessionDtoImplFromJson(json);
 
-// ignore: invalid_annotation_target
   @override
   @JsonKey(includeToJson: false)
   final String $id;
-// ignore: invalid_annotation_target
   @override
   @JsonKey(includeToJson: false)
   final DateTime $createdAt;
-// ignore: invalid_annotation_target
   @override
   @JsonKey(includeToJson: false)
   final DateTime $updatedAt;
@@ -222,12 +264,20 @@ class _$TattooSessionDtoImpl extends _TattooSessionDto {
   final int duration;
   @override
   final String status;
+// Not interested in the entire artist object, just the id.
+  @override
+  @JsonKey(readValue: TattooSessionDto._artistIdFromJson)
+  final String artist;
+// Only need to save the id to the database because it's a relation.
+  @override
+  @JsonKey(toJson: TattooSessionDto._contactToJson)
+  final ContactDto contact;
   @override
   final String? notes;
 
   @override
   String toString() {
-    return 'TattooSessionDto(\$id: ${$id}, \$createdAt: ${$createdAt}, \$updatedAt: ${$updatedAt}, when: $when, duration: $duration, status: $status, notes: $notes)';
+    return 'TattooSessionDto(\$id: ${$id}, \$createdAt: ${$createdAt}, \$updatedAt: ${$updatedAt}, when: $when, duration: $duration, status: $status, artist: $artist, contact: $contact, notes: $notes)';
   }
 
   @override
@@ -244,13 +294,15 @@ class _$TattooSessionDtoImpl extends _TattooSessionDto {
             (identical(other.duration, duration) ||
                 other.duration == duration) &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.artist, artist) || other.artist == artist) &&
+            (identical(other.contact, contact) || other.contact == contact) &&
             (identical(other.notes, notes) || other.notes == notes));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, $id, $createdAt, $updatedAt, when, duration, status, notes);
+  int get hashCode => Object.hash(runtimeType, $id, $createdAt, $updatedAt,
+      when, duration, status, artist, contact, notes);
 
   /// Create a copy of TattooSessionDto
   /// with the given fields replaced by the non-null parameter values.
@@ -277,19 +329,22 @@ abstract class _TattooSessionDto extends TattooSessionDto {
       required final DateTime when,
       required final int duration,
       required final String status,
+      @JsonKey(readValue: TattooSessionDto._artistIdFromJson)
+      required final String artist,
+      @JsonKey(toJson: TattooSessionDto._contactToJson)
+      required final ContactDto contact,
       final String? notes}) = _$TattooSessionDtoImpl;
   const _TattooSessionDto._() : super._();
 
   factory _TattooSessionDto.fromJson(Map<String, dynamic> json) =
       _$TattooSessionDtoImpl.fromJson;
 
-// ignore: invalid_annotation_target
   @override
   @JsonKey(includeToJson: false)
-  String get $id; // ignore: invalid_annotation_target
+  String get $id;
   @override
   @JsonKey(includeToJson: false)
-  DateTime get $createdAt; // ignore: invalid_annotation_target
+  DateTime get $createdAt;
   @override
   @JsonKey(includeToJson: false)
   DateTime get $updatedAt;
@@ -298,7 +353,14 @@ abstract class _TattooSessionDto extends TattooSessionDto {
   @override
   int get duration;
   @override
-  String get status;
+  String get status; // Not interested in the entire artist object, just the id.
+  @override
+  @JsonKey(readValue: TattooSessionDto._artistIdFromJson)
+  String
+      get artist; // Only need to save the id to the database because it's a relation.
+  @override
+  @JsonKey(toJson: TattooSessionDto._contactToJson)
+  ContactDto get contact;
   @override
   String? get notes;
 

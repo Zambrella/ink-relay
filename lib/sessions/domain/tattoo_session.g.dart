@@ -19,6 +19,10 @@ abstract class _$TattooSessionCWProxy {
 
   TattooSession status(String status);
 
+  TattooSession artistId(Identifier artistId);
+
+  TattooSession contact(Contact contact);
+
   TattooSession notes(String? notes);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TattooSession(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
@@ -34,6 +38,8 @@ abstract class _$TattooSessionCWProxy {
     DateTime? when,
     Duration? duration,
     String? status,
+    Identifier? artistId,
+    Contact? contact,
     String? notes,
   });
 }
@@ -63,6 +69,12 @@ class _$TattooSessionCWProxyImpl implements _$TattooSessionCWProxy {
   TattooSession status(String status) => this(status: status);
 
   @override
+  TattooSession artistId(Identifier artistId) => this(artistId: artistId);
+
+  @override
+  TattooSession contact(Contact contact) => this(contact: contact);
+
+  @override
   TattooSession notes(String? notes) => this(notes: notes);
 
   @override
@@ -80,6 +92,8 @@ class _$TattooSessionCWProxyImpl implements _$TattooSessionCWProxy {
     Object? when = const $CopyWithPlaceholder(),
     Object? duration = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
+    Object? artistId = const $CopyWithPlaceholder(),
+    Object? contact = const $CopyWithPlaceholder(),
     Object? notes = const $CopyWithPlaceholder(),
   }) {
     return TattooSession(
@@ -107,6 +121,14 @@ class _$TattooSessionCWProxyImpl implements _$TattooSessionCWProxy {
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as String,
+      artistId: artistId == const $CopyWithPlaceholder() || artistId == null
+          ? _value.artistId
+          // ignore: cast_nullable_to_non_nullable
+          : artistId as Identifier,
+      contact: contact == const $CopyWithPlaceholder() || contact == null
+          ? _value.contact
+          // ignore: cast_nullable_to_non_nullable
+          : contact as Contact,
       notes: notes == const $CopyWithPlaceholder()
           ? _value.notes
           // ignore: cast_nullable_to_non_nullable

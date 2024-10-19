@@ -13,11 +13,15 @@ class Contact extends Equatable {
     required this.name,
     required this.inquiredAt,
     required this.artistId,
-    this.clientId,
   });
 
+  /// The unique identifier for the contact.
   final Identifier id;
+
+  /// When the contact was created.
   final DateTime createdAt;
+
+  /// When the contact was last updated.
   final DateTime updatedAt;
 
   /// The name of the client.
@@ -29,19 +33,14 @@ class Contact extends Equatable {
   /// The artist that the client belongs to.
   final Identifier artistId;
 
-  /// The client that the artist belongs to.
-  final Identifier? clientId;
-
   @override
   List<Object?> get props => [
         id,
         createdAt,
         updatedAt,
         artistId,
-        clientId,
         name,
         inquiredAt,
         artistId,
-        clientId,
       ];
 }

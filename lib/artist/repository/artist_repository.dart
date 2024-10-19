@@ -22,7 +22,7 @@ class ArtistRepository {
       final user = await account.get();
       final userId = user.$id;
       final artistDocs = await db.listDocuments(
-        databaseId: AppwriteIds.mainDatbaseId,
+        databaseId: AppwriteIds.mainDatabaseId,
         collectionId: AppwriteIds.artistCollectionId,
         queries: [
           Query.equal('userId', userId),
@@ -53,7 +53,7 @@ class ArtistRepository {
   Future<ArtistDto> updateUserArtist(ArtistDto artist) async {
     try {
       final artistDoc = await db.updateDocument(
-        databaseId: AppwriteIds.mainDatbaseId,
+        databaseId: AppwriteIds.mainDatabaseId,
         collectionId: AppwriteIds.artistCollectionId,
         documentId: artist.$id,
         data: artist.toJson(),

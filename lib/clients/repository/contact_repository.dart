@@ -27,7 +27,7 @@ class ContactRepository {
     );
     try {
       final docList = await db.listDocuments(
-        databaseId: AppwriteIds.mainDatbaseId,
+        databaseId: AppwriteIds.mainDatabaseId,
         collectionId: AppwriteIds.contactCollectionId,
         queries: [
           Query.equal('artist', artistId),

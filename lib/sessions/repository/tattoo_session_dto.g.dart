@@ -15,6 +15,8 @@ _$TattooSessionDtoImpl _$$TattooSessionDtoImplFromJson(
       when: DateTime.parse(json['when'] as String),
       duration: (json['duration'] as num).toInt(),
       status: json['status'] as String,
+      artist: TattooSessionDto._artistIdFromJson(json, 'artist') as String,
+      contact: ContactDto.fromJson(json['contact'] as Map<String, dynamic>),
       notes: json['notes'] as String?,
     );
 
@@ -24,5 +26,7 @@ Map<String, dynamic> _$$TattooSessionDtoImplToJson(
       'when': instance.when.toIso8601String(),
       'duration': instance.duration,
       'status': instance.status,
+      'artist': instance.artist,
+      'contact': TattooSessionDto._contactToJson(instance.contact),
       'notes': instance.notes,
     };

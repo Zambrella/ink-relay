@@ -1,5 +1,6 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
+import 'package:ink_relay/clients/domain/contact.dart';
 import 'package:ink_relay/common/models.dart';
 
 part 'tattoo_session.g.dart';
@@ -17,6 +18,8 @@ class TattooSession extends Equatable {
     required this.when,
     required this.duration,
     required this.status,
+    required this.artistId,
+    required this.contact,
     this.notes,
   });
 
@@ -42,6 +45,12 @@ class TattooSession extends Equatable {
   /// The notes for the tattoo session.
   final String? notes;
 
+  /// The artist that the tattoo session belongs to.
+  final Identifier artistId;
+
+  /// The contact that the tattoo session belongs to.
+  final Contact contact;
+
   @override
   List<Object?> get props => [
         id,
@@ -51,5 +60,7 @@ class TattooSession extends Equatable {
         duration,
         status,
         notes,
+        artistId,
+        contact,
       ];
 }

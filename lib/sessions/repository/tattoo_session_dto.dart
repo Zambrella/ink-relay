@@ -1,4 +1,7 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ink_relay/clients/repository/contact_dto.dart';
 import 'package:ink_relay/common/models.dart';
 import 'package:ink_relay/sessions/domain/tattoo_session.dart';
 
@@ -8,19 +11,19 @@ part 'tattoo_session_dto.g.dart';
 @freezed
 class TattooSessionDto with _$TattooSessionDto {
   const factory TattooSessionDto({
-    // ignore: invalid_annotation_target
     @JsonKey(includeToJson: false) required String $id,
-    // ignore: invalid_annotation_target
     @JsonKey(includeToJson: false) required DateTime $createdAt,
-    // ignore: invalid_annotation_target
     @JsonKey(includeToJson: false) required DateTime $updatedAt,
     required DateTime when,
     required int duration,
     required String status,
+    // Not interested in the entire artist object, just the id.
+    @JsonKey(readValue: TattooSessionDto._artistIdFromJson)
+    required String artist,
+    // Only need to save the id to the database because it's a relation.
+    @JsonKey(toJson: TattooSessionDto._contactToJson)
+    required ContactDto contact,
     String? notes,
-    // ignore: invalid_annotation_target
-    // @JsonKey(readValue: TattooSessionDto.tatooSessionIdFromJson)
-    // required String artist,
   }) = _TattooSessionDto;
 
   const TattooSessionDto._();
@@ -37,17 +40,23 @@ class TattooSessionDto with _$TattooSessionDto {
       duration: artist.duration.inMinutes,
       status: artist.status,
       notes: artist.notes,
+      artist: artist.artistId.toString(),
+      contact: ContactDto.fromDomain(artist.contact),
     );
   }
 
-  // static Object? tatooSessionIdFromJson(Map<dynamic, dynamic> json, String key) {
-  //   // If the relation has been expanded, return just the id.
-  //   if (json['artist'] is Map) {
-  //     return (json['artist'] as Map<String, dynamic>)[r'$id'];
-  //   } else {
-  //     return json[key];
-  //   }
-  // }
+  static String _contactToJson(ContactDto contact) {
+    return contact.$id;
+  }
+
+  static Object? _artistIdFromJson(Map<dynamic, dynamic> json, String key) {
+    // If the relation has been expanded, return just the id.
+    if (json['artist'] is Map) {
+      return (json['artist'] as Map<String, dynamic>)[r'$id'];
+    } else {
+      return json[key];
+    }
+  }
 
   TattooSession toDomain() {
     return TattooSession(
@@ -58,6 +67,8 @@ class TattooSessionDto with _$TattooSessionDto {
       duration: Duration(minutes: duration),
       status: status,
       notes: notes,
+      artistId: Identifier(artist),
+      contact: contact.toDomain(),
     );
   }
 }
