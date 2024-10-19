@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ink_relay/clients/domain/tattoo_session.dart';
 import 'package:ink_relay/common/models.dart';
+import 'package:ink_relay/sessions/domain/tattoo_session.dart';
 
 part 'tattoo_session_dto.freezed.dart';
 part 'tattoo_session_dto.g.dart';

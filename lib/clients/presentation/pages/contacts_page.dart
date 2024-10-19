@@ -5,14 +5,14 @@ import 'package:ink_relay/clients/providers/contact_list_provider.dart';
 import 'package:ink_relay/theme/theme.dart';
 import 'package:intl/intl.dart';
 
-class ClientsPage extends ConsumerStatefulWidget {
-  const ClientsPage({super.key});
+class ContactsPage extends ConsumerStatefulWidget {
+  const ContactsPage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _ClientsPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _ContactsPageState();
 }
 
-class _ClientsPageState extends ConsumerState<ClientsPage> {
+class _ContactsPageState extends ConsumerState<ContactsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,5 +1,5 @@
-import 'package:ink_relay/clients/domain/artist_client_service.abs.dart';
 import 'package:ink_relay/clients/domain/contact.dart';
+import 'package:ink_relay/clients/domain/contact_service.abs.dart';
 import 'package:ink_relay/clients/repository/contact_repository.dart';
 
 class ContactServiceImpl implements ContactService {

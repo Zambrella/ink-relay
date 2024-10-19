@@ -4,7 +4,7 @@ import 'package:ink_relay/artist/presentation/pages/artist_profile_page.dart';
 import 'package:ink_relay/authentication/presentation/pages/login_page.dart';
 import 'package:ink_relay/authentication/presentation/pages/register_page.dart';
 import 'package:ink_relay/authentication/providers/authentication_providers.dart';
-import 'package:ink_relay/clients/presentation/pages/clients_page.dart';
+import 'package:ink_relay/clients/presentation/pages/contacts_page.dart';
 import 'package:ink_relay/common/widgets/app_header.dart';
 import 'package:ink_relay/messages/presentation/pages/messages_page.dart';
 import 'package:ink_relay/projects/presentation/pages/project_details_page.dart';
@@ -159,7 +159,7 @@ GoRouter goRouter(GoRouterRef ref) {
                     path: '/clients',
                     name: AppRoute.clients.name,
                     pageBuilder: (context, state) => const MaterialPage(
-                      child: ClientsPage(),
+                      child: ContactsPage(),
                     ),
                   ),
                 ],

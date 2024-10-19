@@ -1,6 +1,5 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
-import 'package:ink_relay/clients/domain/tattoo_session.dart';
 import 'package:ink_relay/common/models.dart';
 
 part 'contact.g.dart';
@@ -15,7 +14,6 @@ class Contact extends Equatable {
     required this.inquiredAt,
     required this.artistId,
     this.clientId,
-    this.tattooSessions = const [],
   });
 
   final Identifier id;
@@ -34,9 +32,6 @@ class Contact extends Equatable {
   /// The client that the artist belongs to.
   final Identifier? clientId;
 
-  /// The tattoo sessions that the client has scheduled.
-  final List<TattooSession> tattooSessions;
-
   @override
   List<Object?> get props => [
         id,
@@ -48,6 +43,5 @@ class Contact extends Equatable {
         inquiredAt,
         artistId,
         clientId,
-        tattooSessions,
       ];
 }

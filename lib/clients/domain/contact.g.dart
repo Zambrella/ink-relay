@@ -21,8 +21,6 @@ abstract class _$ContactCWProxy {
 
   Contact clientId(Identifier? clientId);
 
-  Contact tattooSessions(List<TattooSession> tattooSessions);
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Contact(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -37,7 +35,6 @@ abstract class _$ContactCWProxy {
     DateTime? inquiredAt,
     Identifier? artistId,
     Identifier? clientId,
-    List<TattooSession>? tattooSessions,
   });
 }
 
@@ -69,10 +66,6 @@ class _$ContactCWProxyImpl implements _$ContactCWProxy {
   Contact clientId(Identifier? clientId) => this(clientId: clientId);
 
   @override
-  Contact tattooSessions(List<TattooSession> tattooSessions) =>
-      this(tattooSessions: tattooSessions);
-
-  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Contact(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -88,7 +81,6 @@ class _$ContactCWProxyImpl implements _$ContactCWProxy {
     Object? inquiredAt = const $CopyWithPlaceholder(),
     Object? artistId = const $CopyWithPlaceholder(),
     Object? clientId = const $CopyWithPlaceholder(),
-    Object? tattooSessions = const $CopyWithPlaceholder(),
   }) {
     return Contact(
       id: id == const $CopyWithPlaceholder() || id == null
@@ -120,11 +112,6 @@ class _$ContactCWProxyImpl implements _$ContactCWProxy {
           ? _value.clientId
           // ignore: cast_nullable_to_non_nullable
           : clientId as Identifier?,
-      tattooSessions: tattooSessions == const $CopyWithPlaceholder() ||
-              tattooSessions == null
-          ? _value.tattooSessions
-          // ignore: cast_nullable_to_non_nullable
-          : tattooSessions as List<TattooSession>,
     );
   }
 }
