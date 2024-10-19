@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'artist_client_dto.dart';
+part of 'contact_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-ArtistClientDto _$ArtistClientDtoFromJson(Map<String, dynamic> json) {
-  return _ArtistClientDto.fromJson(json);
+ContactDto _$ContactDtoFromJson(Map<String, dynamic> json) {
+  return _ContactDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ArtistClientDto {
+mixin _$ContactDto {
 // ignore: invalid_annotation_target
   @JsonKey(includeToJson: false)
   String get $id =>
@@ -32,24 +32,24 @@ mixin _$ArtistClientDto {
   String get name => throw _privateConstructorUsedError;
   DateTime get inquiredAt =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
-  @JsonKey(readValue: ArtistClientDto.artistIdFromJson)
+  @JsonKey(readValue: ContactDto.artistIdFromJson)
   String get artist => throw _privateConstructorUsedError;
 
-  /// Serializes this ArtistClientDto to a JSON map.
+  /// Serializes this ContactDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ArtistClientDto
+  /// Create a copy of ContactDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ArtistClientDtoCopyWith<ArtistClientDto> get copyWith =>
+  $ContactDtoCopyWith<ContactDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ArtistClientDtoCopyWith<$Res> {
-  factory $ArtistClientDtoCopyWith(
-          ArtistClientDto value, $Res Function(ArtistClientDto) then) =
-      _$ArtistClientDtoCopyWithImpl<$Res, ArtistClientDto>;
+abstract class $ContactDtoCopyWith<$Res> {
+  factory $ContactDtoCopyWith(
+          ContactDto value, $Res Function(ContactDto) then) =
+      _$ContactDtoCopyWithImpl<$Res, ContactDto>;
   @useResult
   $Res call(
       {@JsonKey(includeToJson: false) String $id,
@@ -57,20 +57,20 @@ abstract class $ArtistClientDtoCopyWith<$Res> {
       @JsonKey(includeToJson: false) DateTime $updatedAt,
       String name,
       DateTime inquiredAt,
-      @JsonKey(readValue: ArtistClientDto.artistIdFromJson) String artist});
+      @JsonKey(readValue: ContactDto.artistIdFromJson) String artist});
 }
 
 /// @nodoc
-class _$ArtistClientDtoCopyWithImpl<$Res, $Val extends ArtistClientDto>
-    implements $ArtistClientDtoCopyWith<$Res> {
-  _$ArtistClientDtoCopyWithImpl(this._value, this._then);
+class _$ContactDtoCopyWithImpl<$Res, $Val extends ContactDto>
+    implements $ContactDtoCopyWith<$Res> {
+  _$ContactDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ArtistClientDto
+  /// Create a copy of ContactDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -112,11 +112,11 @@ class _$ArtistClientDtoCopyWithImpl<$Res, $Val extends ArtistClientDto>
 }
 
 /// @nodoc
-abstract class _$$ArtistClientDtoImplCopyWith<$Res>
-    implements $ArtistClientDtoCopyWith<$Res> {
-  factory _$$ArtistClientDtoImplCopyWith(_$ArtistClientDtoImpl value,
-          $Res Function(_$ArtistClientDtoImpl) then) =
-      __$$ArtistClientDtoImplCopyWithImpl<$Res>;
+abstract class _$$ContactDtoImplCopyWith<$Res>
+    implements $ContactDtoCopyWith<$Res> {
+  factory _$$ContactDtoImplCopyWith(
+          _$ContactDtoImpl value, $Res Function(_$ContactDtoImpl) then) =
+      __$$ContactDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -125,18 +125,18 @@ abstract class _$$ArtistClientDtoImplCopyWith<$Res>
       @JsonKey(includeToJson: false) DateTime $updatedAt,
       String name,
       DateTime inquiredAt,
-      @JsonKey(readValue: ArtistClientDto.artistIdFromJson) String artist});
+      @JsonKey(readValue: ContactDto.artistIdFromJson) String artist});
 }
 
 /// @nodoc
-class __$$ArtistClientDtoImplCopyWithImpl<$Res>
-    extends _$ArtistClientDtoCopyWithImpl<$Res, _$ArtistClientDtoImpl>
-    implements _$$ArtistClientDtoImplCopyWith<$Res> {
-  __$$ArtistClientDtoImplCopyWithImpl(
-      _$ArtistClientDtoImpl _value, $Res Function(_$ArtistClientDtoImpl) _then)
+class __$$ContactDtoImplCopyWithImpl<$Res>
+    extends _$ContactDtoCopyWithImpl<$Res, _$ContactDtoImpl>
+    implements _$$ContactDtoImplCopyWith<$Res> {
+  __$$ContactDtoImplCopyWithImpl(
+      _$ContactDtoImpl _value, $Res Function(_$ContactDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ArtistClientDto
+  /// Create a copy of ContactDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -148,7 +148,7 @@ class __$$ArtistClientDtoImplCopyWithImpl<$Res>
     Object? inquiredAt = null,
     Object? artist = null,
   }) {
-    return _then(_$ArtistClientDtoImpl(
+    return _then(_$ContactDtoImpl(
       $id: null == $id
           ? _value.$id
           : $id // ignore: cast_nullable_to_non_nullable
@@ -179,19 +179,18 @@ class __$$ArtistClientDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ArtistClientDtoImpl extends _ArtistClientDto {
-  const _$ArtistClientDtoImpl(
+class _$ContactDtoImpl extends _ContactDto {
+  const _$ContactDtoImpl(
       {@JsonKey(includeToJson: false) required this.$id,
       @JsonKey(includeToJson: false) required this.$createdAt,
       @JsonKey(includeToJson: false) required this.$updatedAt,
       required this.name,
       required this.inquiredAt,
-      @JsonKey(readValue: ArtistClientDto.artistIdFromJson)
-      required this.artist})
+      @JsonKey(readValue: ContactDto.artistIdFromJson) required this.artist})
       : super._();
 
-  factory _$ArtistClientDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ArtistClientDtoImplFromJson(json);
+  factory _$ContactDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ContactDtoImplFromJson(json);
 
 // ignore: invalid_annotation_target
   @override
@@ -211,19 +210,19 @@ class _$ArtistClientDtoImpl extends _ArtistClientDto {
   final DateTime inquiredAt;
 // ignore: invalid_annotation_target
   @override
-  @JsonKey(readValue: ArtistClientDto.artistIdFromJson)
+  @JsonKey(readValue: ContactDto.artistIdFromJson)
   final String artist;
 
   @override
   String toString() {
-    return 'ArtistClientDto(\$id: ${$id}, \$createdAt: ${$createdAt}, \$updatedAt: ${$updatedAt}, name: $name, inquiredAt: $inquiredAt, artist: $artist)';
+    return 'ContactDto(\$id: ${$id}, \$createdAt: ${$createdAt}, \$updatedAt: ${$updatedAt}, name: $name, inquiredAt: $inquiredAt, artist: $artist)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ArtistClientDtoImpl &&
+            other is _$ContactDtoImpl &&
             (identical(other.$id, $id) || other.$id == $id) &&
             (identical(other.$createdAt, $createdAt) ||
                 other.$createdAt == $createdAt) &&
@@ -240,36 +239,35 @@ class _$ArtistClientDtoImpl extends _ArtistClientDto {
   int get hashCode => Object.hash(
       runtimeType, $id, $createdAt, $updatedAt, name, inquiredAt, artist);
 
-  /// Create a copy of ArtistClientDto
+  /// Create a copy of ContactDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ArtistClientDtoImplCopyWith<_$ArtistClientDtoImpl> get copyWith =>
-      __$$ArtistClientDtoImplCopyWithImpl<_$ArtistClientDtoImpl>(
-          this, _$identity);
+  _$$ContactDtoImplCopyWith<_$ContactDtoImpl> get copyWith =>
+      __$$ContactDtoImplCopyWithImpl<_$ContactDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ArtistClientDtoImplToJson(
+    return _$$ContactDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _ArtistClientDto extends ArtistClientDto {
-  const factory _ArtistClientDto(
+abstract class _ContactDto extends ContactDto {
+  const factory _ContactDto(
       {@JsonKey(includeToJson: false) required final String $id,
       @JsonKey(includeToJson: false) required final DateTime $createdAt,
       @JsonKey(includeToJson: false) required final DateTime $updatedAt,
       required final String name,
       required final DateTime inquiredAt,
-      @JsonKey(readValue: ArtistClientDto.artistIdFromJson)
-      required final String artist}) = _$ArtistClientDtoImpl;
-  const _ArtistClientDto._() : super._();
+      @JsonKey(readValue: ContactDto.artistIdFromJson)
+      required final String artist}) = _$ContactDtoImpl;
+  const _ContactDto._() : super._();
 
-  factory _ArtistClientDto.fromJson(Map<String, dynamic> json) =
-      _$ArtistClientDtoImpl.fromJson;
+  factory _ContactDto.fromJson(Map<String, dynamic> json) =
+      _$ContactDtoImpl.fromJson;
 
 // ignore: invalid_annotation_target
   @override
@@ -286,13 +284,13 @@ abstract class _ArtistClientDto extends ArtistClientDto {
   @override
   DateTime get inquiredAt; // ignore: invalid_annotation_target
   @override
-  @JsonKey(readValue: ArtistClientDto.artistIdFromJson)
+  @JsonKey(readValue: ContactDto.artistIdFromJson)
   String get artist;
 
-  /// Create a copy of ArtistClientDto
+  /// Create a copy of ContactDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ArtistClientDtoImplCopyWith<_$ArtistClientDtoImpl> get copyWith =>
+  _$$ContactDtoImplCopyWith<_$ContactDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,13 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ink_relay/clients/domain/artist_client.dart';
+import 'package:ink_relay/clients/domain/contact.dart';
 import 'package:ink_relay/common/models.dart';
 
-part 'artist_client_dto.freezed.dart';
-part 'artist_client_dto.g.dart';
+part 'contact_dto.freezed.dart';
+part 'contact_dto.g.dart';
 
 @freezed
-class ArtistClientDto with _$ArtistClientDto {
-  const factory ArtistClientDto({
+class ContactDto with _$ContactDto {
+  const factory ContactDto({
     // ignore: invalid_annotation_target
     @JsonKey(includeToJson: false) required String $id,
     // ignore: invalid_annotation_target
@@ -17,17 +17,16 @@ class ArtistClientDto with _$ArtistClientDto {
     required String name,
     required DateTime inquiredAt,
     // ignore: invalid_annotation_target
-    @JsonKey(readValue: ArtistClientDto.artistIdFromJson)
-    required String artist,
-  }) = _ArtistClientDto;
+    @JsonKey(readValue: ContactDto.artistIdFromJson) required String artist,
+  }) = _ContactDto;
 
-  const ArtistClientDto._();
+  const ContactDto._();
 
-  factory ArtistClientDto.fromJson(Map<String, dynamic> json) =>
-      _$ArtistClientDtoFromJson(json);
+  factory ContactDto.fromJson(Map<String, dynamic> json) =>
+      _$ContactDtoFromJson(json);
 
-  factory ArtistClientDto.fromDomain(ArtistClient artist) {
-    return ArtistClientDto(
+  factory ContactDto.fromDomain(Contact artist) {
+    return ContactDto(
       $id: artist.id.toString(),
       $createdAt: artist.createdAt,
       $updatedAt: artist.updatedAt,
@@ -46,8 +45,8 @@ class ArtistClientDto with _$ArtistClientDto {
     }
   }
 
-  ArtistClient toDomain() {
-    return ArtistClient(
+  Contact toDomain() {
+    return Contact(
       id: Identifier($id),
       createdAt: $createdAt,
       updatedAt: $updatedAt,

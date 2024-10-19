@@ -1,11 +1,11 @@
 import 'dart:developer';
 
 import 'package:appwrite/appwrite.dart';
-import 'package:ink_relay/clients/repository/artist_client_dto.dart';
+import 'package:ink_relay/clients/repository/contact_dto.dart';
 import 'package:ink_relay/common/appwrite_ids.dart';
 
-class ArtistClientRepository {
-  const ArtistClientRepository({
+class ContactRepository {
+  const ContactRepository({
     required this.account,
     required this.db,
     required this.storage,
@@ -15,49 +15,49 @@ class ArtistClientRepository {
   final Databases db;
   final Storage storage;
 
-  Future<ArtistClientDto> createArtistClient(ArtistClientDto artistClient) {
+  Future<ContactDto> createContact(ContactDto artistClient) {
     // TODO: implement createArtistClient
     throw UnimplementedError();
   }
 
-  Future<List<ArtistClientDto>> getAllArtistClients(String artistId) async {
+  Future<List<ContactDto>> getAllContacts(String artistId) async {
     log(
-      'Getting all artist clients',
-      name: 'ArtistClientRepository',
+      "Getting all artist's contacts",
+      name: 'ContactRepository',
     );
     try {
       final docList = await db.listDocuments(
         databaseId: AppwriteIds.mainDatbaseId,
-        collectionId: AppwriteIds.artistClientCollectionId,
+        collectionId: AppwriteIds.contactCollectionId,
         queries: [
           Query.equal('artist', artistId),
         ],
       );
       final docs = docList.documents;
-      final artistClients =
-          docs.map((doc) => ArtistClientDto.fromJson(doc.data)).toList();
+      final contacts =
+          docs.map((doc) => ContactDto.fromJson(doc.data)).toList();
       log(
-        'Found ${artistClients.length} artist clients for artist $artistId',
-        name: 'ArtistClientRepository',
+        'Found ${contacts.length} contacts for artist $artistId',
+        name: 'ContactRepository',
       );
-      return artistClients;
+      return contacts;
     } catch (e, st) {
       log(
         e.toString(),
         error: e,
         stackTrace: st,
-        name: 'ArtistClientRepository',
+        name: 'ContactRepository',
       );
       rethrow;
     }
   }
 
-  Future<ArtistClientDto> getArtistClient(String id) {
+  Future<ContactDto> getContact(String id) {
     // TODO: implement getArtistClient
     throw UnimplementedError();
   }
 
-  Future<ArtistClientDto> updateArtistClient(ArtistClientDto artistClient) {
+  Future<ContactDto> updateContact(ContactDto artistClient) {
     // TODO: implement updateArtistClient
     throw UnimplementedError();
   }

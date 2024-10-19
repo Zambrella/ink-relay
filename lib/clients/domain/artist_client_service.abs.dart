@@ -1,23 +1,23 @@
-import 'package:ink_relay/clients/domain/artist_client.dart';
+import 'package:ink_relay/clients/domain/contact.dart';
 
-/// Defines methods that the `ArtistClient` service must implement
+/// Defines methods that the `Contact` service must implement
 /// based on the business logic of the application.
-abstract class ArtistClientService {
-  /// Get all [ArtistClient]s that belong to the current user/Aritst.
-  Future<List<ArtistClient>> getAllArtistClients(String artistId);
+abstract class ContactService {
+  /// Get all [Contact]s that belong to the current user/Aritst.
+  Future<List<Contact>> getAllContacts(String artistId);
 
-  /// Get a [ArtistClient] by its [id].
-  Future<ArtistClient> getArtistClient(String id);
+  /// Get a [Contact] by its [id].
+  Future<Contact> getContact(String id);
 
-  /// Create a new [ArtistClient].
-  Future<ArtistClient> createArtistClient(
-    ArtistClient artistClient,
+  /// Create a new [Contact].
+  Future<Contact> createContact(
+    Contact contact,
     String artistId,
   );
 
-  /// Update an existing [ArtistClient].
-  Future<ArtistClient> updateArtistClient(
-    ArtistClient artistClient,
+  /// Update an existing [Contact].
+  Future<Contact> updateContact(
+    Contact contact,
     String artistId,
   );
 }

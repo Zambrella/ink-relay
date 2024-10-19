@@ -1,7 +1,7 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ink_relay/clients/providers/artist_client_list_provider.dart';
+import 'package:ink_relay/clients/providers/contact_list_provider.dart';
 import 'package:ink_relay/theme/theme.dart';
 import 'package:intl/intl.dart';
 
@@ -20,14 +20,14 @@ class _ClientsPageState extends ConsumerState<ClientsPage> {
         title: const Text('Clients'),
         scrolledUnderElevation: 0,
       ),
-      body: switch (ref.watch(artistClientListProvider)) {
-        AsyncData(valueOrNull: final artistClients?) => Padding(
+      body: switch (ref.watch(contactListProvider)) {
+        AsyncData(valueOrNull: final contacts?) => Padding(
             padding: EdgeInsets.all(context.theme.appSpacing.large),
             child: Column(
               children: [
                 Row(
                   children: [
-                    Text('${artistClients.length} clients'),
+                    Text('${contacts.length} clients'),
                     Spacer(),
                     ConstrainedBox(
                       constraints: const BoxConstraints(
@@ -81,9 +81,9 @@ class _ClientsPageState extends ConsumerState<ClientsPage> {
                         label: Text('Next session'),
                       ),
                     ],
-                    rows: artistClients.indexed.map<DataRow>(
+                    rows: contacts.indexed.map<DataRow>(
                       (e) {
-                        final (index, artistClient) = e;
+                        final (index, contact) = e;
                         return DataRow2(
                           onSelectChanged: (value) {
                             // Only when the checkbox is clicked
@@ -99,21 +99,21 @@ class _ClientsPageState extends ConsumerState<ClientsPage> {
                             ),
                             DataCell(
                               Text(
-                                artistClient.name,
+                                contact.name,
                               ),
                             ),
                             // TODO: If it was less than 24 hours ago, show e.g. "23 hours ago"
                             DataCell(
                               Text(
                                 DateFormat('d MMMM, yyyy')
-                                    .format(artistClient.inquiredAt),
+                                    .format(contact.inquiredAt),
                               ),
                             ),
                             // TODO: If it was less than 24 hours ago, show e.g. "23 hours ago"
                             DataCell(
                               Text(
                                 DateFormat('d MMMM, yyyy')
-                                    .format(artistClient.updatedAt),
+                                    .format(contact.updatedAt),
                               ),
                             ),
                             DataCell(

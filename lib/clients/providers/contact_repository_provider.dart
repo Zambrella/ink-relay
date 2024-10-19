@@ -1,12 +1,12 @@
-import 'package:ink_relay/clients/repository/artist_client_repository.dart';
+import 'package:ink_relay/clients/repository/contact_repository.dart';
 import 'package:ink_relay/repository_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'artist_client_repository_provider.g.dart';
+part 'contact_repository_provider.g.dart';
 
 @Riverpod(keepAlive: true)
-ArtistClientRepository artistClientRepository(ArtistClientRepositoryRef ref) {
-  return ArtistClientRepository(
+ContactRepository contactRepository(ContactRepositoryRef ref) {
+  return ContactRepository(
     account: ref.watch(appwriteAccountClientProvider),
     db: ref.watch(appwriteDatabaseClientProvider),
     storage: ref.watch(appwriteStorageClientProvider),
