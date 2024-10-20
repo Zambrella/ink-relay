@@ -1,6 +1,7 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ink_relay/clients/presentation/widgets/contact_card.dart';
 import 'package:ink_relay/clients/providers/contact_list_provider.dart';
 import 'package:ink_relay/theme/theme.dart';
 import 'package:intl/intl.dart';
@@ -89,9 +90,15 @@ class _ContactsPageState extends ConsumerState<ContactsPage> {
                             // Only when the checkbox is clicked
                             print('Selected: $value');
                           },
-                          onTap: () {
-                            // When the entire row is tapped
-                            print('Tapped');
+                          onTap: () async {
+                            await showDialog<void>(
+                              context: context,
+                              builder: (context) {
+                                return Dialog(
+                                  child: ContactCard(contact: contact),
+                                );
+                              },
+                            );
                           },
                           cells: [
                             DataCell(

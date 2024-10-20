@@ -51,6 +51,9 @@ class AppTheme {
   );
 
   static final ThemeData lightThemeData = _lightFlexThemeData.copyWith(
+    dialogTheme: DialogTheme(
+      backgroundColor: _lightFlexThemeData.scaffoldBackgroundColor,
+    ),
     extensions: <ThemeExtension<dynamic>>[
       const SpacingTheme(),
       const ModalTheme(),
@@ -76,6 +79,9 @@ class AppTheme {
   );
 
   static final ThemeData darkThemeData = _darkFlexThemeData.copyWith(
+    dialogTheme: DialogTheme(
+      backgroundColor: _darkFlexThemeData.scaffoldBackgroundColor,
+    ),
     extensions: <ThemeExtension<dynamic>>[
       const SpacingTheme(),
       const ModalTheme(),

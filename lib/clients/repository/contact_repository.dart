@@ -52,9 +52,28 @@ class ContactRepository {
     }
   }
 
-  Future<ContactDto> getContact(String id) {
-    // TODO: implement getArtistClient
-    throw UnimplementedError();
+  Future<ContactDto> getContact(String id) async {
+    log(
+      'Fetching contact with id: $id',
+      name: 'ContactRepository',
+    );
+    try {
+      final doc = await db.getDocument(
+        databaseId: AppwriteIds.mainDatabaseId,
+        collectionId: AppwriteIds.contactCollectionId,
+        documentId: id,
+      );
+      final contactDto = ContactDto.fromJson(doc.data);
+      return contactDto;
+    } catch (e, st) {
+      log(
+        e.toString(),
+        error: e,
+        stackTrace: st,
+        name: 'ContactRepository',
+      );
+      rethrow;
+    }
   }
 
   Future<ContactDto> updateContact(ContactDto artistClient) {

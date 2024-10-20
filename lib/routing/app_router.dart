@@ -4,6 +4,7 @@ import 'package:ink_relay/artist/presentation/pages/artist_profile_page.dart';
 import 'package:ink_relay/authentication/presentation/pages/login_page.dart';
 import 'package:ink_relay/authentication/presentation/pages/register_page.dart';
 import 'package:ink_relay/authentication/providers/authentication_providers.dart';
+import 'package:ink_relay/clients/presentation/pages/contact_details_page.dart';
 import 'package:ink_relay/clients/presentation/pages/contacts_page.dart';
 import 'package:ink_relay/common/widgets/app_header.dart';
 import 'package:ink_relay/common/widgets/main_app_wrapper.dart';
@@ -39,6 +40,7 @@ enum AppRoute {
   projects,
   projectDetails,
   clients,
+  clientDetails,
   profile,
 }
 
@@ -165,6 +167,18 @@ GoRouter goRouter(GoRouterRef ref) {
                     pageBuilder: (context, state) => const MaterialPage(
                       child: ContactsPage(),
                     ),
+                    routes: [
+                      GoRoute(
+                        path: ':clientId',
+                        name: AppRoute.clientDetails.name,
+                        pageBuilder: (context, state) {
+                          final clientId = state.pathParameters['clientId'];
+                          return MaterialPage(
+                            child: ContactDetailsPage(contactId: clientId!),
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),

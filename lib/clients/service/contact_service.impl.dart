@@ -24,9 +24,10 @@ class ContactServiceImpl implements ContactService {
   }
 
   @override
-  Future<Contact> getContact(String id) {
-    // TODO: implement getArtistClient
-    throw UnimplementedError();
+  Future<Contact> getContact(String id) async {
+    final contactDto = await _contactRepository.getContact(id);
+    final contact = contactDto.toDomain();
+    return contact;
   }
 
   @override

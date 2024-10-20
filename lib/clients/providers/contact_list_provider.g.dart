@@ -6,7 +6,7 @@ part of 'contact_list_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$contactListHash() => r'3bb70499eea01e317f8a31a7715507f448ee8535';
+String _$contactListHash() => r'0860d5b70a1c732de8f3028aebd390aca13a17ed';
 
 /// See also [contactList].
 @ProviderFor(contactList)
