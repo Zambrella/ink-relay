@@ -7,7 +7,6 @@ part 'contact_list_provider.g.dart';
 
 @riverpod
 Future<List<Contact>> contactList(ContactListRef ref) async {
-  // TODO: Confirm I can use `requireValue` here
-  final artistId = ref.watch(userArtistIdProvider).requireValue;
-  return ref.watch(contactServiceProvider).getAllContacts(artistId);
+  final artistId = ref.watch(userArtistIdProvider);
+  return ref.watch(contactServiceProvider).getAllContacts(artistId.id);
 }

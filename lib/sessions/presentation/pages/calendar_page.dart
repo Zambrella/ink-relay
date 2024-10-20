@@ -25,7 +25,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          final artistId = ref.read(userArtistIdProvider).requireValue;
+          final artistId = ref.read(userArtistIdProvider).id;
           final contact = Contact(
             id: Identifier.newId(),
             createdAt: DateTime.now(),

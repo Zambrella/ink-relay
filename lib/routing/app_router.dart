@@ -6,6 +6,7 @@ import 'package:ink_relay/authentication/presentation/pages/register_page.dart';
 import 'package:ink_relay/authentication/providers/authentication_providers.dart';
 import 'package:ink_relay/clients/presentation/pages/contacts_page.dart';
 import 'package:ink_relay/common/widgets/app_header.dart';
+import 'package:ink_relay/common/widgets/main_app_wrapper.dart';
 import 'package:ink_relay/messages/presentation/pages/messages_page.dart';
 import 'package:ink_relay/projects/presentation/pages/project_details_page.dart';
 import 'package:ink_relay/projects/presentation/pages/projects_page.dart';
@@ -91,10 +92,13 @@ GoRouter goRouter(GoRouterRef ref) {
           child: RegisterPage(),
         ),
       ),
+      // Must be logged in at this point.
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {
-          return AppHeader(child: child);
+          return MainAppWrapper(
+            child: AppHeader(child: child),
+          );
         },
         routes: [
           StatefulShellRoute.indexedStack(

@@ -7,7 +7,7 @@ part of 'upcoming_sessions_controller.dart';
 // **************************************************************************
 
 String _$upcomingSessionsControllerHash() =>
-    r'554063d40724a0862ebb2abdeb08b1c865db5599';
+    r'c1c79119ad24723e5d2d2455a1567756df7b216a';
 
 /// See also [UpcomingSessionsController].
 @ProviderFor(UpcomingSessionsController)

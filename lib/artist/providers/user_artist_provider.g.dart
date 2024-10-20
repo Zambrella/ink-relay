@@ -20,11 +20,11 @@ final userArtistProvider = FutureProvider<Artist>.internal(
 );
 
 typedef UserArtistRef = FutureProviderRef<Artist>;
-String _$userArtistIdHash() => r'989adee0445d81d5c90194e77f445d5c73d09d46';
+String _$userArtistIdHash() => r'31e4dde23b302ccdcf9afd24212a4b2cbd2aa252';
 
 /// See also [userArtistId].
 @ProviderFor(userArtistId)
-final userArtistIdProvider = Provider<AsyncValue<String>>.internal(
+final userArtistIdProvider = Provider<Identifier>.internal(
   userArtistId,
   name: r'userArtistIdProvider',
   debugGetCreateSourceHash:
@@ -33,6 +33,6 @@ final userArtistIdProvider = Provider<AsyncValue<String>>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef UserArtistIdRef = ProviderRef<AsyncValue<String>>;
+typedef UserArtistIdRef = ProviderRef<Identifier>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
