@@ -15,7 +15,7 @@ class ContactRepository {
   final Databases db;
   final Storage storage;
 
-  Future<ContactDto> createContact(ContactDto artistClient) {
+  Future<ContactDto> createContact(ContactDto contact) {
     // TODO: implement createArtistClient
     throw UnimplementedError();
   }
@@ -76,8 +76,27 @@ class ContactRepository {
     }
   }
 
-  Future<ContactDto> updateContact(ContactDto artistClient) {
-    // TODO: implement updateArtistClient
-    throw UnimplementedError();
+  Future<ContactDto> updateContact(ContactDto contact) async {
+    log(
+      'Updating contact',
+      name: 'ContactRepository',
+    );
+    try {
+      final doc = await db.updateDocument(
+        databaseId: AppwriteIds.mainDatabaseId,
+        collectionId: AppwriteIds.contactCollectionId,
+        documentId: contact.$id,
+        data: contact.toJson(),
+      );
+      final updatedContact = ContactDto.fromJson(doc.data);
+      return updatedContact;
+    } catch (e) {
+      log(
+        e.toString(),
+        error: e,
+        name: 'ContactRepository',
+      );
+      rethrow;
+    }
   }
 }

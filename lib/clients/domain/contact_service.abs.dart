@@ -10,6 +10,7 @@ abstract class ContactService {
   Future<Contact> getContact(String id);
 
   /// Create a new [Contact].
+  /// [artistId] is required to associate the [Contact] with the current user/Artist.
   Future<Contact> createContact(
     Contact contact,
     String artistId,
@@ -18,6 +19,5 @@ abstract class ContactService {
   /// Update an existing [Contact].
   Future<Contact> updateContact(
     Contact contact,
-    String artistId,
   );
 }

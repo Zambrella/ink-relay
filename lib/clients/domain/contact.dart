@@ -43,4 +43,6 @@ class Contact extends Equatable {
         inquiredAt,
         artistId,
       ];
+
+  Contact updateName(String newName) => copyWith(name: newName);
 }

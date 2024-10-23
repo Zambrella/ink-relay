@@ -1,5 +1,6 @@
 import 'package:ink_relay/clients/domain/contact.dart';
 import 'package:ink_relay/clients/domain/contact_service.abs.dart';
+import 'package:ink_relay/clients/repository/contact_dto.dart';
 import 'package:ink_relay/clients/repository/contact_repository.dart';
 
 class ContactServiceImpl implements ContactService {
@@ -31,11 +32,11 @@ class ContactServiceImpl implements ContactService {
   }
 
   @override
-  Future<Contact> updateContact(
-    Contact contact,
-    String artistId,
-  ) {
-    // TODO: implement updateArtistClient
-    throw UnimplementedError();
+  Future<Contact> updateContact(Contact contact) async {
+    final contactDto = ContactDto.fromDomain(contact);
+    final updatedContactDto =
+        await _contactRepository.updateContact(contactDto);
+    final updatedContact = updatedContactDto.toDomain();
+    return updatedContact;
   }
 }
