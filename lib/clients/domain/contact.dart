@@ -13,6 +13,7 @@ class Contact extends Equatable {
     required this.name,
     required this.inquiredAt,
     required this.artistId,
+    this.profilePictureId,
   });
 
   /// The unique identifier for the contact.
@@ -26,6 +27,8 @@ class Contact extends Equatable {
 
   /// The name of the client.
   final String name;
+
+  final String? profilePictureId;
 
   /// The date the client inquired about the artist.
   final DateTime inquiredAt;
@@ -42,6 +45,7 @@ class Contact extends Equatable {
         name,
         inquiredAt,
         artistId,
+        profilePictureId,
       ];
 
   Contact updateName(String newName) => copyWith(name: newName);

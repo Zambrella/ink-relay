@@ -2,9 +2,11 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ink_relay/clients/presentation/widgets/contact_card.dart';
+import 'package:ink_relay/clients/presentation/widgets/contact_sessions_list.dart';
 import 'package:ink_relay/clients/providers/contact_list_provider.dart';
 import 'package:ink_relay/theme/theme.dart';
 import 'package:intl/intl.dart';
+import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
 class ContactsPage extends ConsumerStatefulWidget {
   const ContactsPage({super.key});
@@ -91,12 +93,29 @@ class _ContactsPageState extends ConsumerState<ContactsPage> {
                             print('Selected: $value');
                           },
                           onTap: () async {
-                            await showDialog<void>(
+                            await WoltModalSheet.show<void>(
                               context: context,
-                              builder: (context) {
-                                return Dialog(
-                                  child: ContactCard(contact: contact),
-                                );
+                              useRootNavigator: true,
+                              modalTypeBuilder: (BuildContext context) {
+                                final formFactor = FormFactorWidget.of(context);
+                                switch (formFactor) {
+                                  case FormFactor.mobile || FormFactor.tablet:
+                                    return WoltModalType.bottomSheet();
+                                  case FormFactor.laptop || FormFactor.desktop:
+                                    return WoltModalType.dialog();
+                                }
+                              },
+                              pageListBuilder: (modalSheetContext) {
+                                return [
+                                  ContactCardWidget.build(
+                                    modalSheetContext,
+                                    contact,
+                                  ),
+                                  ContactSessionsList.build(
+                                    modalSheetContext,
+                                    contact,
+                                  ),
+                                ];
                               },
                             );
                           },

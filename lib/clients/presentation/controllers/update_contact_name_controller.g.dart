@@ -7,7 +7,7 @@ part of 'update_contact_name_controller.dart';
 // **************************************************************************
 
 String _$updateContactNameControllerHash() =>
-    r'6f6fda4e689b90c9258b8428476c28293e812392';
+    r'a8e6b1062264fa0f72e778a014ed0d8a397d6db3';
 
 /// See also [UpdateContactNameController].
 @ProviderFor(UpdateContactNameController)

@@ -19,6 +19,8 @@ abstract class _$ContactCWProxy {
 
   Contact artistId(Identifier artistId);
 
+  Contact profilePictureId(String? profilePictureId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Contact(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -32,6 +34,7 @@ abstract class _$ContactCWProxy {
     String? name,
     DateTime? inquiredAt,
     Identifier? artistId,
+    String? profilePictureId,
   });
 }
 
@@ -60,6 +63,10 @@ class _$ContactCWProxyImpl implements _$ContactCWProxy {
   Contact artistId(Identifier artistId) => this(artistId: artistId);
 
   @override
+  Contact profilePictureId(String? profilePictureId) =>
+      this(profilePictureId: profilePictureId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Contact(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -74,6 +81,7 @@ class _$ContactCWProxyImpl implements _$ContactCWProxy {
     Object? name = const $CopyWithPlaceholder(),
     Object? inquiredAt = const $CopyWithPlaceholder(),
     Object? artistId = const $CopyWithPlaceholder(),
+    Object? profilePictureId = const $CopyWithPlaceholder(),
   }) {
     return Contact(
       id: id == const $CopyWithPlaceholder() || id == null
@@ -101,6 +109,10 @@ class _$ContactCWProxyImpl implements _$ContactCWProxy {
           ? _value.artistId
           // ignore: cast_nullable_to_non_nullable
           : artistId as Identifier,
+      profilePictureId: profilePictureId == const $CopyWithPlaceholder()
+          ? _value.profilePictureId
+          // ignore: cast_nullable_to_non_nullable
+          : profilePictureId as String?,
     );
   }
 }

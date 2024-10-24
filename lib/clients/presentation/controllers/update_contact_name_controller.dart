@@ -1,5 +1,6 @@
 import 'package:ink_relay/clients/domain/contact.dart';
 import 'package:ink_relay/clients/presentation/controllers/contact_details_page_controller.dart';
+import 'package:ink_relay/clients/providers/contact_list_provider.dart';
 import 'package:ink_relay/clients/providers/contact_service_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -18,9 +19,11 @@ class UpdateContactNameController extends _$UpdateContactNameController {
             newContact,
           );
       // This probably isn't necessary.
-      ref.invalidate(
-        contactDetailsPageControllerProvider(contact.id.toString()),
-      );
+      ref
+        ..invalidate(
+          contactDetailsPageControllerProvider(contact.id.toString()),
+        )
+        ..invalidate(contactListProvider);
       state = const AsyncData(null);
     } catch (e, st) {
       state = AsyncError(e, st);

@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:ink_relay/app_exception.dart';
 import 'package:ink_relay/artist/presentation/widgets/update_info_card.dart';
 import 'package:ink_relay/clients/domain/contact.dart';
 import 'package:ink_relay/clients/presentation/controllers/contact_details_page_controller.dart';
 import 'package:ink_relay/clients/presentation/controllers/update_contact_name_controller.dart';
+import 'package:ink_relay/common/extensions/toastification_extensions.dart';
 import 'package:ink_relay/theme/theme.dart';
+import 'package:toastification/toastification.dart';
 
 class ContactDetailsPage extends ConsumerStatefulWidget {
   const ContactDetailsPage({
@@ -98,6 +101,25 @@ class _ContactDetailsContentState extends ConsumerState<ContactDetailsContent> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(
+      updateContactNameControllerProvider,
+      (prev, state) {
+        if (prev != null && prev.isLoading && state is AsyncData) {
+          toastification.showSuccess(
+            context: context,
+            message: 'Client name updated successfully',
+          );
+        }
+
+        if (state is AsyncError) {
+          toastification.showError(
+            context: context,
+            message: state.error.errorMessage(context),
+          );
+        }
+      },
+    );
+
     return ListView(
       children: [
         UpdateInfoCard(
