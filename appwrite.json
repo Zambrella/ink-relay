@@ -1,0 +1,487 @@
+{
+    "projectId": "6702a30e000740536df1",
+    "projectName": "Tattoo Artist CRM",
+    "settings": {
+        "services": {
+            "account": true,
+            "avatars": true,
+            "databases": true,
+            "locale": true,
+            "health": true,
+            "storage": true,
+            "teams": true,
+            "users": true,
+            "functions": true,
+            "graphql": true,
+            "messaging": true
+        },
+        "auth": {
+            "methods": {
+                "jwt": true,
+                "phone": true,
+                "invites": true,
+                "anonymous": true,
+                "email-otp": true,
+                "magic-url": true,
+                "email-password": true
+            },
+            "security": {
+                "duration": 31536000,
+                "limit": 0,
+                "sessionsLimit": 10,
+                "passwordHistory": 0,
+                "passwordDictionary": false,
+                "personalDataCheck": false,
+                "sessionAlerts": false,
+                "mockNumbers": []
+            }
+        }
+    },
+    "functions": [
+        {
+            "$id": "671a87eb001353867621",
+            "execute": [
+                "any"
+            ],
+            "name": "Starter function",
+            "enabled": true,
+            "logging": true,
+            "runtime": "dart-3.1",
+            "scopes": [
+                "users.read",
+                "databases.read",
+                "databases.write",
+                "collections.read",
+                "collections.write",
+                "attributes.read",
+                "attributes.write",
+                "indexes.read",
+                "indexes.write",
+                "documents.read",
+                "documents.write"
+            ],
+            "events": [],
+            "schedule": "",
+            "timeout": 15,
+            "entrypoint": "lib/main.dart",
+            "commands": "dart pub get",
+            "path": "functions/Starter function"
+        }
+    ],
+    "databases": [
+        {
+            "$id": "6707fc3f0000e1bc9774",
+            "name": "main",
+            "enabled": true
+        }
+    ],
+    "collections": [
+        {
+            "$id": "6707fc6f000bda4450fc",
+            "$permissions": [
+                "read(\"any\")"
+            ],
+            "databaseId": "6707fc3f0000e1bc9774",
+            "name": "artist",
+            "enabled": true,
+            "documentSecurity": true,
+            "attributes": [
+                {
+                    "key": "email",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "format": "email",
+                    "default": null
+                },
+                {
+                    "key": "profileImage",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 36,
+                    "default": null
+                },
+                {
+                    "key": "phoneNumber",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 16,
+                    "default": null
+                },
+                {
+                    "key": "userId",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 36,
+                    "default": null
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 64,
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "userIdIndex",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "userId"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                }
+            ]
+        },
+        {
+            "$id": "670c2564000c09e5ee04",
+            "$permissions": [],
+            "databaseId": "6707fc3f0000e1bc9774",
+            "name": "contact",
+            "enabled": true,
+            "documentSecurity": true,
+            "attributes": [
+                {
+                    "key": "name",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 64,
+                    "default": null
+                },
+                {
+                    "key": "inquiredAt",
+                    "type": "datetime",
+                    "required": true,
+                    "array": false,
+                    "format": "",
+                    "default": null
+                },
+                {
+                    "key": "artist",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "6707fc6f000bda4450fc",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "670e8cf10034017d6641",
+                    "onDelete": "cascade",
+                    "side": "parent"
+                },
+                {
+                    "key": "session",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "67116fa3001e110610f9",
+                    "relationType": "manyToOne",
+                    "twoWay": true,
+                    "twoWayKey": "contact",
+                    "onDelete": "setNull",
+                    "side": "child"
+                },
+                {
+                    "key": "project",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "6713934e000127aeb1de",
+                    "relationType": "manyToOne",
+                    "twoWay": true,
+                    "twoWayKey": "contact",
+                    "onDelete": "setNull",
+                    "side": "child"
+                },
+                {
+                    "key": "message",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "67139462003a71abca85",
+                    "relationType": "manyToMany",
+                    "twoWay": true,
+                    "twoWayKey": "contact",
+                    "onDelete": "setNull",
+                    "side": "child"
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "67116fa3001e110610f9",
+            "$permissions": [
+                "create(\"any\")",
+                "read(\"any\")",
+                "update(\"any\")",
+                "delete(\"any\")"
+            ],
+            "databaseId": "6707fc3f0000e1bc9774",
+            "name": "session",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "when",
+                    "type": "datetime",
+                    "required": true,
+                    "array": false,
+                    "format": "",
+                    "default": null
+                },
+                {
+                    "key": "duration",
+                    "type": "integer",
+                    "required": true,
+                    "array": false,
+                    "min": 0,
+                    "max": 1440,
+                    "default": null
+                },
+                {
+                    "key": "status",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 64,
+                    "default": null
+                },
+                {
+                    "key": "notes",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 1024,
+                    "default": null
+                },
+                {
+                    "key": "artist",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "6707fc6f000bda4450fc",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "671392c500351560daf8",
+                    "onDelete": "setNull",
+                    "side": "parent"
+                },
+                {
+                    "key": "contact",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "670c2564000c09e5ee04",
+                    "relationType": "manyToOne",
+                    "twoWay": true,
+                    "twoWayKey": "session",
+                    "onDelete": "setNull",
+                    "side": "parent"
+                },
+                {
+                    "key": "project",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "6713934e000127aeb1de",
+                    "relationType": "manyToMany",
+                    "twoWay": true,
+                    "twoWayKey": "session",
+                    "onDelete": "setNull",
+                    "side": "child"
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "6713934e000127aeb1de",
+            "$permissions": [
+                "create(\"any\")",
+                "read(\"any\")",
+                "update(\"any\")",
+                "delete(\"any\")"
+            ],
+            "databaseId": "6707fc3f0000e1bc9774",
+            "name": "project",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "name",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 128,
+                    "default": null
+                },
+                {
+                    "key": "description",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 2048,
+                    "default": null
+                },
+                {
+                    "key": "status",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 64,
+                    "default": null
+                },
+                {
+                    "key": "quote",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": 0,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "artist",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "6707fc6f000bda4450fc",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "671393b9003d9e2b74af",
+                    "onDelete": "setNull",
+                    "side": "parent"
+                },
+                {
+                    "key": "contact",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "670c2564000c09e5ee04",
+                    "relationType": "manyToOne",
+                    "twoWay": true,
+                    "twoWayKey": "project",
+                    "onDelete": "setNull",
+                    "side": "parent"
+                },
+                {
+                    "key": "session",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "67116fa3001e110610f9",
+                    "relationType": "manyToMany",
+                    "twoWay": true,
+                    "twoWayKey": "project",
+                    "onDelete": "setNull",
+                    "side": "parent"
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "67139462003a71abca85",
+            "$permissions": [
+                "create(\"any\")",
+                "read(\"any\")",
+                "update(\"any\")",
+                "delete(\"any\")"
+            ],
+            "databaseId": "6707fc3f0000e1bc9774",
+            "name": "message",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "source",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 64,
+                    "default": null
+                },
+                {
+                    "key": "timestamp",
+                    "type": "datetime",
+                    "required": true,
+                    "array": false,
+                    "format": "",
+                    "default": null
+                },
+                {
+                    "key": "content",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 4048,
+                    "default": null
+                },
+                {
+                    "key": "artist",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "6707fc6f000bda4450fc",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "671394bb0035c4390f07",
+                    "onDelete": "setNull",
+                    "side": "parent"
+                },
+                {
+                    "key": "contact",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "670c2564000c09e5ee04",
+                    "relationType": "manyToMany",
+                    "twoWay": true,
+                    "twoWayKey": "message",
+                    "onDelete": "setNull",
+                    "side": "parent"
+                }
+            ],
+            "indexes": []
+        }
+    ],
+    "buckets": [
+        {
+            "$id": "670bc1df0024b0df237c",
+            "$permissions": [
+                "create(\"users\")"
+            ],
+            "fileSecurity": true,
+            "name": "profile_image",
+            "enabled": true,
+            "maximumFileSize": 50000000,
+            "allowedFileExtensions": [
+                "jpg",
+                "png"
+            ],
+            "compression": "none",
+            "encryption": true,
+            "antivirus": true
+        },
+        {
+            "$id": "67194b700006a0747a67",
+            "$permissions": [
+                "create(\"users\")"
+            ],
+            "fileSecurity": true,
+            "name": "contact_image",
+            "enabled": true,
+            "maximumFileSize": 50000000,
+            "allowedFileExtensions": [],
+            "compression": "none",
+            "encryption": true,
+            "antivirus": true
+        }
+    ]
+}
