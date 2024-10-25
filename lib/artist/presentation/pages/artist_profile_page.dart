@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ink_relay/artist/presentation/widgets/settings_widget.dart';
 import 'package:ink_relay/artist/presentation/widgets/update_profile.dart';
 import 'package:ink_relay/artist/providers/user_artist_provider.dart';
 import 'package:ink_relay/theme/theme.dart';
@@ -66,7 +67,7 @@ class _ArtistProfileStatePage extends ConsumerState<ArtistProfilePage>
                     UpdateProfile(artist: artist),
                     Center(child: Text("Tab two")),
                     Center(child: Text("Tab three")),
-                    Center(child: Text("Tab four")),
+                    const SettingsWidget(),
                   ],
                 ),
               ),
